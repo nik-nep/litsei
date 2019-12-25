@@ -1,0 +1,582 @@
+{% extends 'main/base_main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<section class="home-slider owl-carousel">
+  <div class="slider-item" style="background-image:url({% static 'main/images/bg_15.jpg' %});">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row no-gutters slider-text align-items-center justify-content-start" data-scrollax-parent="true">
+      <div class="col-md-6 ftco-animate">
+        <h1 class="mb-4">ВАСИЛЬКІВСЬКИЙ ПРОФЕСІЙНИЙ ЛІЦЕЙ</h1>
+        <p>КОМУНАЛЬНИЙ НАВЧАЛЬНИЙ ЗАКЛАД КИЇВСЬКОЇ ОБЛАСНОЇ РАДИ </p>
+        <p><a href="#" class="btn btn-primary px-4 py-3 mt-3">Дізнатися більше</a></p>
+      </div>
+    </div>
+    </div>
+  </div>
+  <div class="slider-item" style="background-image:url({% static 'main/images/bg_11.jpg' %});">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row no-gutters slider-text align-items-center justify-content-start" data-scrollax-parent="true">
+      <div class="col-md-6 ftco-animate">
+        <h1 class="mb-4">Твоя професія - дорога в стабільне майбутнє</h1>
+        <p>Васильківський Професійний Ліцей</p>
+        <p><a href="#" class="btn btn-primary px-4 py-3 mt-3">Контакти</a></p>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<section class="ftco-services ftco-no-pb">
+  <div class="container-wrap">
+    <div class="row no-gutters">
+      <div class="col-md-3 d-flex services align-self-stretch py-5 px-4 ftco-animate bg-primary">
+        <div class="media block-6 d-block text-center">
+          <div class="icon d-flex justify-content-center align-items-center">
+            <span class="flaticon-teacher"></span>
+          </div>
+          <div class="media-body p-2 mt-3">
+            <h3 class="heading">План роботи на місяць</h3>
+            <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 d-flex services align-self-stretch py-5 px-4 ftco-animate bg-darken">
+        <div class="media block-6 d-block text-center">
+          <div class="icon d-flex justify-content-center align-items-center">
+            <span class="flaticon-reading"></span>
+          </div>
+          <div class="media-body p-2 mt-3">
+            <h3 class="heading">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</h3>
+            <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 d-flex services align-self-stretch py-5 px-4 ftco-animate bg-primary">
+        <div class="media block-6 d-block text-center">
+          <div class="icon d-flex justify-content-center align-items-center">
+            <span class="flaticon-books"></span>
+          </div>
+          <div class="media-body p-2 mt-3">
+            <h3 class="heading">Е-бібліотека</h3>
+            <p>     </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 d-flex services align-self-stretch py-5 px-4 ftco-animate bg-darken">
+        <div class="media block-6 d-block text-center">
+          <div class="icon d-flex justify-content-center align-items-center">
+            <span class="flaticon-diploma"></span>
+          </div>
+          <div class="media-body p-2 mt-3">
+            <h3 class="heading">Оголошення</h3>
+            <p></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="ftco-section bg-light">
+  <div class="container">
+    <div class="row justify-content-center mb-5 pb-2">
+      <div class="col-md-8 text-center heading-section ftco-animate">
+        <h2 class="mb-4"><span>Останні</span> новини</h2>
+        <p>Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country</p>
+      </div>
+    </div>
+    <div class="row">
+
+     {% for article in articles %}
+      <div class="col-md-6 col-lg-4 ftco-animate">
+        <div class="blog-entry">
+          <a href="{% url 'article_detail' pk=article.pk %}" class="block-20 d-flex align-items-end" style="background-image: url(media/{{ article.image }});">
+            <div class="meta-date text-center p-2">
+              <span class="day">{{ article.published_date|date:"d" }}</span>
+              <span class="mos">{{ article.published_date|date:"m" }}</span>
+              <span class="yr">{{ article.published_date|date:"Y" }}</span>
+            </div>
+          </a>
+          <div class="text bg-white p-4">
+            <h5 class="heading"><a href="{% url 'article_detail' pk=article.pk %}">{{ article.title }}</a></h5>
+            <p>{{article.text|truncatewords:18 }}</p>
+            <div class="d-flex align-items-center mt-4">
+              <p class="mb-0"><a href="{% url 'article_detail' pk=article.pk %}" class="btn btn-primary">Читати далі  <span class="ion-ios-arrow-round-forward"></span></a></p>
+              <p class="ml-auto mb-0">
+                <a href="#" class="mr-2">{{ article.author }}</a>
+              <!--  <a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a> -->
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+
+<!--
+<section class="ftco-section ftco-no-pt ftc-no-pb">
+  <div class="container">
+    <div class="row d-flex">
+      <div class="col-md-5 order-md-last wrap-about wrap-about d-flex align-items-stretch">
+        <div class="img" style="background-image: url({% static 'main/images/bg_13.jpg' %}); border"></div>
+      </div>
+      <div class="col-md-7 wrap-about py-5 pr-md-4 ftco-animate">
+        <h2 class="mb-4">Що ми пропонуємо</h2>
+        <p>Короткий зміст.</p>
+        <div class="row mt-5">
+          <div class="col-lg-6">
+            <div class="services-2 d-flex">
+              <div class="icon mt-2 d-flex justify-content-center align-items-center"><span class="flaticon-security"></span></div>
+              <div class="text pl-3">
+                <h3>Безпека</h3>
+                <p>Текст !!!!.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="services-2 d-flex">
+              <div class="icon mt-2 d-flex justify-content-center align-items-center"><span class="flaticon-reading"></span></div>
+              <div class="text pl-3">
+                <h3>Регулярні заняття</h3>
+                <p>Текст Регулярні заняття.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="services-2 d-flex">
+              <div class="icon mt-2 d-flex justify-content-center align-items-center"><span class="flaticon-diploma"></span></div>
+              <div class="text pl-3">
+                <h3>Certified Teachers</h3>
+                <p>Far far away, behind the word mountains, far from the countries Vokalia.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="services-2 d-flex">
+              <div class="icon mt-2 d-flex justify-content-center align-items-center"><span class="flaticon-education"></span></div>
+              <div class="text pl-3">
+                <h3>Sufficient Classrooms</h3>
+                <p>Far far away, behind the word mountains, far from the countries Vokalia.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="services-2 d-flex">
+              <div class="icon mt-2 d-flex justify-content-center align-items-center"><span class="flaticon-jigsaw"></span></div>
+              <div class="text pl-3">
+                <h3>Creative Lessons</h3>
+                <p>Far far away, behind the word mountains, far from the countries Vokalia.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="services-2 d-flex">
+              <div class="icon mt-2 d-flex justify-content-center align-items-center"><span class="flaticon-kids"></span></div>
+              <div class="text pl-3">
+                <h3>Sports Facilities</h3>
+                <p>Far far away, behind the word mountains, far from the countries Vokalia.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+-->
+
+<section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url({% static 'main/images/bg_3.jpg' %});" data-stellar-background-ratio="0.5">
+  <div class="container">
+    <div class="row justify-content-center mb-5 pb-2 d-flex">
+      <div class="col-md-6 align-items-stretch d-flex">
+        <div class="img img-video d-flex align-items-center" style="background-image: url({% static 'main/images/about-2_3.jpg' %});">
+          <div class="video justify-content-center">
+            <!--<a href="https://vimeo.com/45830194" class="icon-video popup-vimeo d-flex justify-content-center align-items-center">
+              <span class="ion-ios-play"></span>
+            </a> -->
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 heading-section heading-section-white ftco-animate pl-lg-5 pt-md-0 pt-5">
+        <h2 class="mb-4">Васильківський професійний ліцей</h2>
+        <p>Сьогодні це сучасний заклад професійної (професійно-технічної) освіти, який здійснює підготовку кваліфікованих робітників за найбільш затребуваними на ринку праці інтегрованими професіями.</p>
+        <p>Навчання в ліцеї безкоштовне, учні отримують щомісячну стипендію, харчування, всі бажаючі забезпечуються на період навчання гуртожитком.</p>
+      </div>
+    </div>
+    <div class="row d-md-flex align-items-center justify-content-center">
+      <div class="col-lg-12">
+        <div class="row d-md-flex align-items-center">
+          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
+            <div class="block-18">
+              <div class="icon"><span class="flaticon-doctor"></span></div>
+              <div class="text">
+                <strong class="number" data-number="18">0</strong>
+                <span>сучасних професій</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
+            <div class="block-18">
+              <div class="icon"><span class="flaticon-doctor"></span></div>
+              <div class="text">
+                <strong class="number" data-number="330">0</strong>
+                <span>здобувачів освіти</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
+            <div class="block-18">
+              <div class="icon"><span class="flaticon-doctor"></span></div>
+              <div class="text">
+                <strong class="number" data-number="15">0</strong>
+                <span>видів економічної діяльності - КВЕД</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
+            <div class="block-18">
+              <div class="icon"><span class="flaticon-doctor"></span></div>
+              <div class="text">
+                <strong class="number" data-number="58">0</strong>
+                <span>років успішної діяльності</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="ftco-section">
+  <div class="container-fluid px-4">
+    <div class="row justify-content-center mb-5 pb-2">
+      <div class="col-md-8 text-center heading-section ftco-animate">
+        <h2 class="mb-4"><span>НАШИ</span> ПЕРЕВАГИ</h2>
+        <p>Тут текст про сучасне обладнання (матеріальна база - 3Д принтер, вишивальна машина …) та відповідні фото</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 course ftco-animate">
+        <div class="img" style="background-image: url({% static 'main/images/course-1.jpg' %});"></div>
+        <div class="text pt-4">
+          <p class="meta d-flex">
+            <span><i class="icon-user mr-2"></i>----</span>
+            <span><i class="icon-table mr-2"></i>----</span>
+            <span><i class="icon-calendar mr-2"></i>-----</span>
+          </p>
+          <h3><a href="#">Назва 1</a></h3>
+          <p>Опис 1</p>
+          <p><a href="#" class="btn btn-primary">Подати заявку</a></p>
+        </div>
+      </div>
+      <div class="col-md-3 course ftco-animate">
+        <div class="img" style="background-image: url({% static 'main/images/course-2.jpg' %});"></div>
+        <div class="text pt-4">
+          <p class="meta d-flex">
+            <span><i class="icon-user mr-2"></i>-----</span>
+            <span><i class="icon-table mr-2"></i>-----</span>
+            <span><i class="icon-calendar mr-2"></i>------</span>
+          </p>
+          <h3><a href="#">Назва 2</a></h3>
+          <p>Опис 2</p>
+          <p><a href="#" class="btn btn-primary">Подати заявку</a></p>
+        </div>
+      </div>
+      <div class="col-md-3 course ftco-animate">
+        <div class="img" style="background-image: url({% static 'main/images/brother.jpg' %});"></div>
+        <div class="text pt-4">
+          <p class="meta d-flex">
+            <span><i class="icon-user mr-2"></i>---</span>
+            <span><i class="icon-table mr-2"></i>---</span>
+            <span><i class="icon-calendar mr-2"></i>----</span>
+          </p>
+          <h3><a href="#">Професійна вишивальна машина</a></h3>
+          <p>Короткий зміст по машину</p>
+          <p><a href="#" class="btn btn-primary">Подати заявку</a></p>
+        </div>
+      </div>
+      <div class="col-md-3 course ftco-animate">
+        <div class="img" style="background-image: url({% static 'main/images/3d-print.jpg' %});"></div>
+        <div class="text pt-4">
+          <p class="meta d-flex">
+            <span><i class="icon-user mr-2"></i>приклад 1</span>
+            <span><i class="icon-table mr-2"></i>приклад 2</span>
+            <span><i class="icon-calendar mr-2"></i>приклад 3</span>
+          </p>
+          <h3><a href="#">Основи 3D друку</a></h3>
+          <p>Сучасний 3D принтер ...</p>
+          <p><a href="#" class="btn btn-primary">Подати заявку</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ftco-section bg-light">
+  <div class="container-fluid px-4">
+    <div class="row justify-content-center mb-5 pb-2">
+      <div class="col-md-8 text-center heading-section ftco-animate">
+        <h2 class="mb-4"><span>ТОВАРИ</span> ВЛАСНОГО ВИРОБНИЦТВА </h2>
+        <p>Тут текст про замовлення, виробництво</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 course ftco-animate">
+        <div class="img" style="background-image: url({% static 'main/images/course-1.jpg' %});"></div>
+        <div class="text pt-4">
+          <h3><a href="#">Назва 1</a></h3>
+          <p>Опис 1</p>
+          <p><a href="#" class="btn btn-primary">замовити</a></p>
+        </div>
+      </div>
+      <div class="col-md-3 course ftco-animate">
+        <div class="img" style="background-image: url({% static 'main/images/course-2.jpg' %});"></div>
+        <div class="text pt-4">
+          <h3><a href="#">Назва 2</a></h3>
+          <p>Опис 2</p>
+          <p><a href="#" class="btn btn-primary">замовити</a></p>
+        </div>
+      </div>
+      <div class="col-md-3 course ftco-animate">
+        <div class="img" style="background-image: url({% static 'main/images/brother.jpg' %});"></div>
+        <div class="text pt-4">
+          <h3><a href="#">Професійна вишивальна машина</a></h3>
+          <p>Короткий зміст по машину</p>
+          <p><a href="#" class="btn btn-primary">замовити</a></p>
+        </div>
+      </div>
+      <div class="col-md-3 course ftco-animate">
+        <div class="img" style="background-image: url({% static 'main/images/3d-print.jpg' %});"></div>
+        <div class="text pt-4">
+          <h3><a href="#">Основи 3D друку</a></h3>
+          <p>Сучасний 3D принтер ...</p>
+          <p><a href="#" class="btn btn-primary">замовити</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ftco-section ftco-consult ftco-no-pt ftco-no-pb" style="background-image: url({% static 'main/images/bg_5.jpg' %});" data-stellar-background-ratio="0.5">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row justify-content-end">
+      <div class="col-md-6 py-5 px-md-5">
+        <div class="py-md-5">
+          <div class="heading-section heading-section-white ftco-animate mb-5">
+            <h2 class="mb-4">Є питання?</h2>
+            <p>Задайте питання використовуючи форму нижче, і ми зв'яжемося з Вами!</p>
+          </div>
+          <form action="#" class="appointment-form ftco-animate">
+            <div class="d-md-flex">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="First Name">
+              </div>
+              <div class="form-group ml-md-4">
+                <input type="text" class="form-control" placeholder="Last Name">
+              </div>
+            </div>
+            <div class="d-md-flex">
+              <div class="form-group">
+                <div class="form-field">
+                  <div class="select-wrap">
+                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                    <select name="" id="" class="form-control">
+                      <option value="">Select Your Course</option>
+                      <option value="">Art Lesson</option>
+                      <option value="">Language Lesson</option>
+                      <option value="">Music Lesson</option>
+                      <option value="">Sports</option>
+                      <option value="">Other Services</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group ml-md-4">
+                <input type="text" class="form-control" placeholder="Phone">
+              </div>
+            </div>
+            <div class="d-md-flex">
+              <div class="form-group">
+                <textarea name="" id="" cols="30" rows="2" class="form-control" placeholder="Message"></textarea>
+              </div>
+              <div class="form-group ml-md-4">
+                <input type="submit" value="Відправити" class="btn btn-primary py-3 px-4">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="ftco-section">
+  <div class="container">
+    <div class="row justify-content-center mb-5 pb-2">
+      <div class="col-md-8 text-center heading-section ftco-animate">
+        <h2 class="mb-4">Корисні просилання</h2>
+      </div>
+    </div>
+
+      <div class="row ftco-animate justify-content-center">
+        <div class="col-md-12">
+
+          <div class="carousel-testimony owl-carousel">
+
+            <div class="item">
+              <div class="testimony-wrap d-flex">
+                <div class="card" style="width: 12rem;">
+                  <a href="https://mon.gov.ua/ua" target="_blank"><img src="{% static 'main/images/logo-mon.png' %}" class="card-img-top" alt="..."></a>
+                </div>
+                <div class="text ml-2">
+                  <p></p>
+                  <p class="name"><a href="https://mon.gov.ua/ua">Міністерство освіти і науки України.</a></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="testimony-wrap d-flex">
+                <div class="card" style="width: 12rem;">
+                  <a href="http://kyiv-obl.gov.ua/" target="_blank"><img src="{% static 'main/images/logo-kyiv-obl.JPG' %}" class="card-img-top" alt="..."></a>
+                </div>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="testimony-wrap d-flex">
+                <div class="card" style="width: 12rem;">
+                  <a href="https://www.kyiv-oblosvita.gov.ua/" target="_blank"><img src="{% static 'main/images/logo-kyiv-oblosvita.png' %}" class="card-img-top" alt="..."></a>
+                </div>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="testimony-wrap d-flex">
+                <div class="card" style="width: 12rem;">
+                  <a href="https://www.kristti.com.ua/" target="_blank"><img src="{% static 'main/images/logo-kristti.jpg' %}" class="card-img-top" alt="..."></a>
+                </div>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="testimony-wrap d-flex">
+                <div class="card" style="width: 12rem;">
+                  <a href="http://oblpto.in.ua/" target="_blank"><img src="{% static 'main/images/logo-oblpto.jpg' %}" class="card-img-top" alt="..."></a>
+                </div>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="testimony-wrap d-flex">
+                <div class="card" style="width: 12rem;">
+                  <a href="https://pedpresa.ua/" target="_blank"><img src="{% static 'main/images/logo-pedpresa.png' %}" class="card-img-top" alt="..."></a>
+                </div>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="testimony-wrap d-flex">
+                <div class="card" style="width: 12rem;">
+                  <a href="https://ivet.edu.ua/" target="_blank"><img src="{% static 'main/images/logo-ivet.png' %}" class="card-img-top" alt="..."></a>
+                </div>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="testimony-wrap d-flex">
+                <div class="card" style="width: 12rem;">
+                  <a href="http://testportal.gov.ua/" target="_blank"><img src="{% static 'main/images/logo-testportal.png' %}" class="card-img-top" alt="..."></a>
+                </div>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="testimony-wrap d-flex">
+                <div class="card" style="width: 12rem;">
+                  <a href="https://kyivtest.org.ua/" target="_blank"><img src="{% static 'main/images/logo-kyivtest.png' %}" class="card-img-top" alt="..."></a>
+                </div>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="testimony-wrap d-flex">
+                <div class="card" style="width: 12rem;">
+                  <a href="https://www.kyiv-oblosvita.gov.ua/index.php?option=com_content&view=category&id=102" target="_blank"><img src="{% static 'main/images/logo-patriot.jpg' %}" class="card-img-top" alt="..."></a>
+                </div>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="testimony-wrap d-flex">
+                <div class="card" style="width: 12rem;">
+                  <a href="https://www.kyiv-oblosvita.gov.ua/index.php?option=com_content&view=category&layout=blog&id=33&Itemid=173" target="_blank"><img src="{% static 'main/images/logo-dovidnyk.jpg' %}" class="card-img-top" alt="..."></a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="ftco-gallery">
+  <div class="container-wrap">
+    <div class="row no-gutters">
+      <div class="col-md-3 ftco-animate">
+        <a href="{% static 'main/images/image_1.jpg' %}" class="gallery image-popup img d-flex align-items-center" style="background-image: url({% static 'main/images/course-1.jpg' %});">
+          <div class="icon mb-4 d-flex align-items-center justify-content-center">
+            <span class="icon-instagram"></span>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-3 ftco-animate">
+        <a href="{% static 'main/images/image_2.jpg' %}" class="gallery image-popup img d-flex align-items-center" style="background-image: url({% static 'main/images/image_2.jpg)' %};">
+          <div class="icon mb-4 d-flex align-items-center justify-content-center">
+            <span class="icon-instagram"></span>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-3 ftco-animate">
+        <a href="{% static 'main/images/image_3.jpg' %}" class="gallery image-popup img d-flex align-items-center" style="background-image: url({% static 'main/images/image_3.jpg)' %};">
+          <div class="icon mb-4 d-flex align-items-center justify-content-center">
+            <span class="icon-instagram"></span>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-3 ftco-animate">
+        <a href="{% static 'main/images/image_4.jpg' %}" class="gallery image-popup img d-flex align-items-center" style="background-image: url({% static 'main/images/image_4.jpg)' %};">
+          <div class="icon mb-4 d-flex align-items-center justify-content-center">
+            <span class="icon-instagram"></span>
+          </div>
+        </a>
+      </div>
+
+
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block futer %}
+{% for last2 in last_2_articles %}
+    {% include 'main/includes/base_foter_template.html' %}
+{% endfor %}
+{% endblock %}

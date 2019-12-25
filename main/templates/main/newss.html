@@ -1,0 +1,40 @@
+{% extends "layout/basic.html" %}
+
+{% block content %}
+<h2>Последние 10 статей</h2>
+{% for news in newss %}
+<div>
+  <h2>{{ news.news_title }}</h2>
+
+        <div class="image">
+          <img src="/media/{{ news.image }}">
+        </div>
+
+        <p>{{ news.image }}</p>
+
+  <p>{{ news.news_text }}</p>
+  <p><a href="{% url 'by_rubric' news.rubric.pk %}">
+  {{ news.rubric.name }}</a></p>
+  <p>{{ news.pub_date|date:"d.m.Y" }}</p>
+</div>
+{% endfor %}
+<div class="pagination">
+    <span class="step-links">
+        {% if newss.has_previous %}
+            <a href="?page=1">&laquo; Перша</a>
+            <a href="?page={{ newss.previous_page_number }}">Попередня</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ newss.number }} of {{ newss.paginator.num_pages }}.
+        </span>
+
+        {% if newss.has_next %}
+            <a href="?page={{ newss.next_page_number }}">Далі</a>
+            <a href="?page={{ newss.paginator.num_pages }}">Остання &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+
+{% endblock %}
