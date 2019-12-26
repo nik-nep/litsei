@@ -30,7 +30,7 @@ def article_detail(request, pk):
     article = get_object_or_404(Article, pk=pk)
     last_3_articles = Article.objects.reverse()[0:3]
     last_2_articles = Article.objects.reverse()[:2]
-    rubrics =  Rubric.objects.all()
+    rubrics = Rubric.objects.all()
     tags = Tag.objects.all()
     totall_art = Article.objects.filter().count()
     context = {'article': article, 'rubrics': rubrics,
@@ -39,3 +39,17 @@ def article_detail(request, pk):
               'last_2_articles': last_2_articles,
               }
     return render(request, 'main/article_detail.html', context)
+
+def pravyla_pryiomu(request):
+    pravyla = PravilaPryiomu.objects.reverse()[0:1]
+    last_3_articles = Article.objects.reverse()[0:3]
+    last_2_articles = Article.objects.reverse()[:2]
+    rubrics = Rubric.objects.all()
+    tags = Tag.objects.all()
+    totall_art = Article.objects.filter().count()
+    context = {'pravyla': pravyla, 'rubrics': rubrics,
+            'totall_art': totall_art, 'tags': tags,
+            'last_3_articles': last_3_articles,
+            'last_2_articles': last_2_articles,
+            }
+    return render(request, 'main/pravyla_pryiomu.html', context)

@@ -38,6 +38,7 @@ class Article(models.Model):
     published_date = models.DateTimeField(blank=True, null=True, verbose_name='Дата публікації')
     rubric = models.ForeignKey('Rubric', null=True,
                                on_delete=models.PROTECT, verbose_name="Рубрика")
+    is_active = models.BooleanField(default=True)
 
     def publish(self):
         self.published_date = timezone.now()
@@ -156,3 +157,23 @@ class Metodikfile(models.Model):
     class Meta:
         verbose_name_plural = 'Додаткові файли'
         verbose_name = 'Додатковий файл'
+
+class PravilaPryiomu(models.Model):
+    title = models.CharField(max_length = 200, db_index=True, verbose_name='Назва')
+    text = models.TextField(blank=True, db_index=True, verbose_name='Опис')
+    format_text = RichTextUploadingField(blank=True, verbose_name='Опис розширено')
+    created_date = models.DateTimeField(default=timezone.now)
+    published_date = models.DateTimeField(blank=True, null=True, verbose_name='Дата публікації')
+    is_active = models.BooleanField(default=True)
+
+    def publish(self):
+        self.published_date = timezone.now()
+        self.save()
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name_plural = 'Правила прийому'
+        verbose_name = 'Правила прийому'
+        ordering = ["-published_date"]

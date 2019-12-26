@@ -51,3 +51,9 @@
 		</section>
 
 {% endblock %}
+
+{% block futer %}
+{% for last2 in last_2_articles %}
+    {% include 'main/includes/base_foter_template.html' %}
+{% endfor %}
+{% endblock %}
