@@ -13,9 +13,9 @@ urlpatterns = [
     path('news/', newss_list),
     path('news/<int:pk>', article_detail, name='article_detail'),
     path('about', about),
-    path('home', home),
     path('leadership', leadership),
     path('pravyla_pryiomu', pravyla_pryiomu),
+    path('public', public),
     path('', home),
 ]
 

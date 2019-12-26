@@ -13,11 +13,28 @@ def home(request):
 
 
 def about(request):
-    return render(request, 'main/about.html')
+    last_3_articles = Article.objects.reverse()[0:3]
+    last_2_articles = Article.objects.reverse()[:2]
+    rubrics = Rubric.objects.all()
+    tags = Tag.objects.all()
+    totall_art = Article.objects.filter().count()
+    context = {'rubrics': rubrics,
+        'totall_art': totall_art, 'tags': tags,
+        'last_3_articles': last_3_articles,
+        'last_2_articles': last_2_articles,
+        }
+    return render(request, 'main/about.html', context)
 
 def leadership(request):
     stafs = Staff.objects.all()
-    return render(request, 'main/leadership.html', context={'stafs': stafs})
+    last_2_articles = Article.objects.reverse()[:2]
+    context = {'stafs': stafs, 'last_2_articles': last_2_articles}
+    return render(request, 'main/leadership.html', context)
+
+def public(request):
+    last_2_articles = Article.objects.reverse()[:2]
+    context = {'last_2_articles': last_2_articles}
+    return render(request, 'main/public.html', context)
 
 
 def newss_list(request):

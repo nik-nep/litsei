@@ -1,0 +1,59 @@
+{% extends 'main/base_main.html' %}
+{% load static %}
+
+
+{% block title %}Публічна інформація{% endblock %}
+
+{% block content %}
+
+    <section class="hero-wrap hero-wrap-2" style="background-image: url({% static 'main/images/bg_1.jpg' %});">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+            <h1 class="mb-2 bread">Публічна інформація</h1>
+            <p class="breadcrumbs"><span class="mr-2"><a href="home">Головна <i class="ion-ios-arrow-forward"></i></a></span> <span>Публічна інформація <i class="ion-ios-arrow-forward"></i></span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ftco-section bg-light">
+			<div class="container-fluid px-4">
+				<div class="row">
+
+{% for st in stafs %}
+					<div class="col-md-6 col-lg-3 ftco-animate">
+						<div class="staff">
+							<div class="img-wrap d-flex align-items-stretch">
+								<div class="img align-self-stretch" style="background-image: url(media/{{ st.image }});"></div>
+							</div>
+							<div class="text pt-3 text-center">
+                  <h3>{{ st.last_name }} {{ st.first_name }} {{ st.patronymic }}</h3>
+                	<h3></h3>
+								<span class="position mb-2">{{ st.position }}</span>
+								<div class="faded">
+                <!--  <a class="btn btn-primary btn-lg" href="#" role="button">Докладніше</a> -->
+									<ul class="ftco-social text-center">
+		                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+		                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+		                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
+		                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+		              </ul>
+	              </div>
+							</div>
+						</div>
+					</div>
+{% endfor %}
+
+				</div>
+			</div>
+		</section>
+
+{% endblock %}
+
+{% block futer %}
+{% for last2 in last_2_articles %}
+    {% include 'main/includes/base_foter_template.html' %}
+{% endfor %}
+{% endblock %}

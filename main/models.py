@@ -147,7 +147,7 @@ class Staff(models.Model):
 class Metodikfile(models.Model):
     title = models.CharField(max_length=50)
     mf = models.ForeignKey(Staff, on_delete=models.CASCADE,
-                               verbose_name='Оберіть файл')
+                               verbose_name='Оберіть працівника')
     file = models.FileField(upload_to='materials',
                     verbose_name="Додаткові файли")
 

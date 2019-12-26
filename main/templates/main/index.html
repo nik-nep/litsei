@@ -96,6 +96,7 @@
 
      {% for article in articles %}
       <div class="col-md-6 col-lg-4 ftco-animate">
+
         <div class="blog-entry">
           <a href="{% url 'article_detail' pk=article.pk %}" class="block-20 d-flex align-items-end" style="background-image: url(media/{{ article.image }});">
             <div class="meta-date text-center p-2">
@@ -119,10 +120,65 @@
       </div>
 
       {% endfor %}
+
+        <div class="container">
+          <div class="row justify-content-center mb-5 pb-2">
+            <div class="col-md-8 text-center heading-section ftco-animate">
+            <h3 class="mb-4"><a href="/news"><span>всі</span> новини...</a></h3>
+            </div>
+          </div>
+        </div>
     </div>
   </div>
 </section>
 
+<!-- Тест вывода новостей
+<section class="ftco-section bg-light">
+  <div class="container">
+    <div class="row justify-content-center mb-5 pb-2">
+      <div class="col-md-8 text-center heading-section ftco-animate">
+        <h2 class="mb-4"><span>Останні</span> новини TEST</h2>
+        <p></p>
+      </div>
+    </div>
+    <div class="row">
+
+<div class="card-deck">
+
+{% for article in articles %}
+
+  <div class="card">
+    <a href="{% url 'article_detail' pk=article.pk %}" class="block-20 d-flex align-items-end" style="background-image: url(media/{{ article.image }});">
+      <div class="meta-date text-center p-2">
+        <span class="day">{{ article.published_date|date:"d" }}</span>
+        <span class="mos">{{ article.published_date|date:"m" }}</span>
+        <span class="yr">{{ article.published_date|date:"Y" }}</span>
+      </div>
+    </a>
+    <div class="card-body">
+      <h5 class="card-title">{{ article.title }}</h5>
+      <p class="card-text">{{article.text|truncatewords:18 }}</p>
+    </div>
+    <div class="card-footer">
+      <div class="d-flex align-items-center mt-4">
+        <p class="mb-0"><a href="{% url 'article_detail' pk=article.pk %}" class="btn btn-primary">Читати далі  <span class="ion-ios-arrow-round-forward"></span></a></p>
+        <p class="ml-auto mb-0">
+          <a href="#" class="mr-2">{{ article.author }}</a>
+         <a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a>
+
+        </p>
+      </div>
+    </div>
+
+</div>
+{% endfor %}
+
+</div>
+
+</div>
+</div>
+</section>
+-->
 
 <!--
 <section class="ftco-section ftco-no-pt ftc-no-pb">
