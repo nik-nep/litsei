@@ -16,6 +16,7 @@ urlpatterns = [
     path('leadership', leadership),
     path('pravyla_pryiomu', pravyla_pryiomu),
     path('public', public),
+    path('contact', contact),
     path('', home),
 ]
 

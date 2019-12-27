@@ -70,3 +70,6 @@ def pravyla_pryiomu(request):
             'last_2_articles': last_2_articles,
             }
     return render(request, 'main/pravyla_pryiomu.html', context)
+
+def contact(request):
+    return render(request, 'main/contact.html')
