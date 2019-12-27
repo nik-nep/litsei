@@ -91,4 +91,6 @@ def pravyla_pryiomu(request):
     return render(request, 'main/pravyla_pryiomu.html', context)
 
 def contact(request):
-    return render(request, 'main/contact.html')
+    last_2_articles = Article.objects.reverse()[:2]
+    context = {'last_2_articles': last_2_articles}
+    return render(request, 'main/contact.html', context)
