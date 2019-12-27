@@ -1,8 +1,22 @@
 from django.shortcuts import render, get_object_or_404
 from django.template import loader
 from django.http import HttpResponse
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from .models import *
 
+
+def draft(request):
+    last_3_articles = Article.objects.reverse()[0:3]
+    last_2_articles = Article.objects.reverse()[:2]
+    rubrics = Rubric.objects.all()
+    tags = Tag.objects.all()
+    totall_art = Article.objects.filter().count()
+    context = {'rubrics': rubrics,
+        'totall_art': totall_art, 'tags': tags,
+        'last_3_articles': last_3_articles,
+        'last_2_articles': last_2_articles,
+        }
+    return render(request, 'main/draft_page.html', context)
 
 def home(request):
     articles = Article.objects.reverse()[:3]
@@ -40,7 +54,12 @@ def public(request):
 def newss_list(request):
     articles = Article.objects.all()
     last_2_articles = Article.objects.reverse()[:2]
-    context = {'articles': articles, 'last_2_articles': last_2_articles}
+    paginator = Paginator(articles, 4)
+
+    page = request.GET.get('page')
+    articles_paginator = paginator.get_page(page)
+    context = {'articles': articles, 'last_2_articles': last_2_articles,
+              'articles_paginator': articles_paginator}
     return render(request, 'main/news_list.html', context)
 
 def article_detail(request, pk):

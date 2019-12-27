@@ -1,0 +1,147 @@
+{% extends 'main/base_main.html' %}
+{% load static %}
+
+
+{% block title %}{% endblock %}
+
+{% block content %}
+
+    <section class="hero-wrap hero-wrap-2" style="background-image: url({% static 'main/images/bg_1.jpg' %});">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+            <h1 class="mb-2 bread"></h1>
+            <p class="breadcrumbs"><span class="mr-2"><a href="/">Головна <i class="ion-ios-arrow-forward"></i></a></span> <span><i class="ion-ios-arrow-forward"></i></span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="ftco-section">
+			<div class="container">
+				<div class="row">
+          <div class="col-lg-8 ftco-animate">
+
+            <h2 class="mb-3">Вибачте, сторінка в стадії наповнення.</h2>
+
+
+
+
+          </div>
+          <div class="pt-0 mt-3">
+          </div> <!-- .col-md-8 -->
+
+
+          <div class="col-lg-4 sidebar ftco-animate">
+            <div class="sidebar-box">
+              <form action="#" class="search-form">
+                <div class="form-group">
+                  <span class="icon icon-search"></span>
+                  <input type="text" class="form-control" placeholder="шукати...">
+                </div>
+              </form>
+            </div>
+            <div class="sidebar-box ftco-animate">
+            	<h3>Рубріки</h3>
+              <ul class="categories">
+{% for rubric in rubrics %}
+                <li><a href="#">{{ rubric.name }} <span>{{ totall_art }}</span></a></li>
+{% endfor %}
+
+              </ul>
+            </div>
+
+            <div class="sidebar-box ftco-animate">
+              <h3>Останні новини</h3>
+{% for last3 in last_3_articles %}
+              <div class="block-21 mb-4 d-flex">
+                <a class="blog-img mr-4" style="background-image: url(/media/{{ last3.image }});"></a>
+                <div class="text">
+                  <h3 class="heading"><a href="{% url 'article_detail' pk=last3.pk %}">{{ last3.title }}</a></h3>
+                  <div class="meta">
+                    <div><a href="#"><span class="icon-calendar"></span> {{ last3.published_date|date:"d.m.Y" }}</a></div>
+                    <div><a href="#"><span class="icon-person"></span> {{ last3.author }}</a></div>
+                    <!--<div><a href="#"><span class="icon-chat"></span> 19</a></div>-->
+                  </div>
+                </div>
+              </div>
+{% endfor %}
+
+            </div>
+
+            <div class="sidebar-box ftco-animate">
+              <h3>Tag Cloud</h3>
+              <ul class="tagcloud m-0 p-0">
+                {% for tag in tags %}
+                <a href="#" class="tag-cloud-link">{{ tag.title }}</a>
+                {% endfor %}
+              </ul>
+            </div>
+<!-- Блок Архіви
+            <div class="sidebar-box ftco-animate">
+            	<h3>Архіви</h3>
+              <ul class="categories">
+              	<li><a href="#">December 2018 <span>(30)</span></a></li>
+              	<li><a href="#">Novemmber 2018 <span>(20)</span></a></li>
+                <li><a href="#">September 2018 <span>(6)</span></a></li>
+                <li><a href="#">August 2018 <span>(8)</span></a></li>
+              </ul>
+            </div>
+-->
+
+            <div class="sidebar-box ftco-animate">
+              <h3>Васильківський професійний ліцей</h3>
+              <p>Сьогодні це сучасний заклад професійної (професійно-технічної) освіти, який здійснює підготовку кваліфікованих робітників за найбільш затребуваними на ринку праці інтегрованими професіями</p>
+            </div>
+          </div><!-- END COL -->
+        </div>
+			</div>
+		</section>
+
+
+
+		<section class="ftco-gallery">
+    	<div class="container-wrap">
+    		<div class="row no-gutters">
+					<div class="col-md-3 ftco-animate">
+						<a href="{% static 'main/images/image_1.jpg' %}" class="gallery image-popup img d-flex align-items-center" style="background-image: url({% static 'main/images/course-1.jp' %}g);">
+							<div class="icon mb-4 d-flex align-items-center justify-content-center">
+    						<span class="icon-instagram"></span>
+    					</div>
+						</a>
+					</div>
+					<div class="col-md-3 ftco-animate">
+						<a href="{% static 'main/images/image_2.jpg' %}" class="gallery image-popup img d-flex align-items-center" style="background-image: url({% static 'main/images/image_2.jpg' %});">
+							<div class="icon mb-4 d-flex align-items-center justify-content-center">
+    						<span class="icon-instagram"></span>
+    					</div>
+						</a>
+					</div>
+					<div class="col-md-3 ftco-animate">
+						<a href="{% static 'main/images/image_3.jpg' %}" class="gallery image-popup img d-flex align-items-center" style="background-image: url({% static 'main/images/image_3.jpg' %});">
+							<div class="icon mb-4 d-flex align-items-center justify-content-center">
+    						<span class="icon-instagram"></span>
+    					</div>
+						</a>
+					</div>
+					<div class="col-md-3 ftco-animate">
+						<a href="{% static 'main/images/image_4.jpg' %}" class="gallery image-popup img d-flex align-items-center" style="background-image: url({% static 'main/images/image_4.jpg' %});">
+							<div class="icon mb-4 d-flex align-items-center justify-content-center">
+    						<span class="icon-instagram"></span>
+    					</div>
+						</a>
+					</div>
+        </div>
+    	</div>
+    </section>
+
+
+  {% endblock %}
+
+  {% block futer %}
+  {% for last2 in last_2_articles %}
+      {% include 'main/includes/base_foter_template.html' %}
+  {% endfor %}
+  {% endblock %}
