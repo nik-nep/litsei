@@ -5,6 +5,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.views.decorators.cache import never_cache
 from django.contrib.staticfiles.views import serve
+from photologue.sitemaps import GallerySitemap, PhotoSitemap
 
 from .views import *
 
@@ -18,8 +19,18 @@ urlpatterns = [
     path('public', public),
     path('contact', contact),
     path('draft', draft),
+    # path('gallery/', gallery),
+    path('rubric/<int:pk>', rubric_newss_list, name='rubric_newss_list'),
+    path('photologue/', include('photologue.urls', namespace='photologue')),
     path('', home),
 ]
+
+
+sitemaps = {
+    'photologue_galleries': GallerySitemap,
+    'photologue_photos': PhotoSitemap,
+
+}
 
 if settings.DEBUG:
     urlpatterns.append(path('static/<path:path>', never_cache(serve)))

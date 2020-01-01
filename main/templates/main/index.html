@@ -107,7 +107,7 @@
           </a>
           <div class="text bg-white p-4">
             <h5 class="heading"><a href="{% url 'article_detail' pk=article.pk %}">{{ article.title }}</a></h5>
-            <p>{{article.text|truncatewords:18 }}</p>
+            <p>{% autoescape off %}{{article.article_text|truncatewords:10}}{% endautoescape %}</p>
             <div class="d-flex align-items-center mt-4">
               <p class="mb-0"><a href="{% url 'article_detail' pk=article.pk %}" class="btn btn-primary">Читати далі  <span class="ion-ios-arrow-round-forward"></span></a></p>
               <p class="ml-auto mb-0">
@@ -121,12 +121,22 @@
 
       {% endfor %}
 
-        <div class="container">
+    <div class="container">
           <div class="row justify-content-center mb-5 pb-2">
             <div class="col-md-8 text-center heading-section ftco-animate">
             <h3 class="mb-4"><a href="/news"><span>всі</span> новини...</a></h3>
             </div>
           </div>
+        </div>
+        <div class="col-lg-4 sidebar ftco-animate">
+        <div class="sidebar-box ftco-animate">
+          <h3>Рубрики</h3>
+          <ul class="categories">
+            {% for rubric in rubrics %}
+            <li><a href="/rubric/{{ rubric.pk }}">{{ rubric.name }} <span>{{ rubric.article__count }}</span></a></li>
+            {% endfor %}
+          </ul>
+        </div>
         </div>
     </div>
   </div>

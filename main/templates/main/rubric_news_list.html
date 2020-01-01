@@ -11,8 +11,8 @@
   <div class="container">
     <div class="row no-gutters slider-text align-items-center justify-content-center">
       <div class="col-md-9 ftco-animate text-center">
-        <h1 class="mb-2 bread">Новини</h1>
-        <p class="breadcrumbs"><span class="mr-2"><a href="/">Головна <i class="ion-ios-arrow-forward"></i></a></span> <span>Новини <i class="ion-ios-arrow-forward"></i></span></p>
+        <h1 class="mb-2 bread">Рубрика</h1>
+        <p class="breadcrumbs"><span class="mr-2"><a href="/">Головна <i class="ion-ios-arrow-forward"></i></a></span> <span>{{ rubric.name }}  <i class="ion-ios-arrow-forward"></i></span></p>
       </div>
     </div>
   </div>
@@ -25,14 +25,15 @@
 				<div class="row">
 {% for article in articles_paginator %}
 					<div class="col-md-3 course ftco-animate">
-            
+
             {% if article.is_image_default == True %}
                   <div class="img" style="background-image: url({% static 'main/images/news_image.jpg)' %};"></div>
             {% else %}
-						      <div class="img" style="background-image: url(/media/{{ article.image }});"></div>
+                  <div class="img" style="background-image: url(/media/{{ article.image }});"></div>
             {% endif %}
 
-            <div class="text pt-4">
+
+						<div class="text pt-4">
 							<p class="meta d-flex">
 								<span><i class="icon-user mr-2"></i>{{ article.author }}</span>
 								<span><i class="icon-table mr-2"></i></span>
@@ -44,6 +45,8 @@
 						</div>
 					</div>
 {% endfor %}
+
+
 
 				</div>
 

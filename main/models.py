@@ -5,7 +5,7 @@ from django.conf import settings
 from django.utils import timezone
 from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
-
+from photologue.models import Gallery
 
 
 # Create your models here.
@@ -34,11 +34,24 @@ class Article(models.Model):
     tags = models.ManyToManyField('Tag', blank=True, related_name='articles')
     image = models.ImageField(blank=True, upload_to=get_timestamp_path_article,
                               verbose_name="Зображення статті")
+    is_image_default = models.BooleanField(default=False, verbose_name='Стандартне зображення')
+    gallery = models.ForeignKey('photologue.Gallery', blank=True, null=True,
+                              on_delete=models.PROTECT, verbose_name='Галерея статті')
+    add_image = models.ManyToManyField('ArticleToImage', blank=True, related_name='articles')
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True, verbose_name='Дата публікації')
     rubric = models.ForeignKey('Rubric', null=True,
                                on_delete=models.PROTECT, verbose_name="Рубрика")
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=True, verbose_name='Опубліковано')
+
+    def delete(self, *args, **kwargs):
+        for ai in self.additionalimage_set.all():
+            ai.delete()
+        super().delete(*args, **kwargs)
+    def delete(self, *args, **kwargs):
+        for ai in self.additionatolimage_set.all():
+            ai.delete()
+        super().delete(*args, **kwargs)
 
     def publish(self):
         self.published_date = timezone.now()
@@ -51,6 +64,24 @@ class Article(models.Model):
         verbose_name_plural = 'Статті'
         verbose_name = 'Стаття'
         ordering = ["-published_date"]
+
+
+class AdditionalImage(models.Model):
+    art_photo = models.ForeignKey(Article, on_delete=models.CASCADE,
+                           verbose_name='Новини')
+    image = models.ImageField(upload_to=get_timestamp_path_article_photo,
+                    verbose_name="Зображення")
+    class Meta:
+        verbose_name_plural = 'Додаткові зображення'
+        verbose_name = 'Додаткове зображення'
+
+class ArticleToImage(models.Model):
+    image = models.ImageField(upload_to=get_timestamp_path_article_photo,
+                    verbose_name="Загальне Зображення")
+    class Meta:
+        verbose_name_plural = 'Загальні додаткові зображення'
+        verbose_name = 'Загальне додаткове зображення'
+
 
 class Tag(models.Model):
     title = models.CharField(max_length=50)
