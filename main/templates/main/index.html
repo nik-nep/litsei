@@ -111,7 +111,11 @@
           </a>
           <div class="text bg-white p-4">
             <h5 class="heading"><a href="{% url 'article_detail' pk=article.pk %}">{{ article.title }}</a></h5>
+            {% if article.is_video_news == True %}
+            <p></p>
+            {% else %}
             <p>{% autoescape off %}{{article.article_text|truncatewords:10}}{% endautoescape %}</p>
+            {% endif %}
             <div class="d-flex align-items-center mt-4">
               <p class="mb-0"><a href="{% url 'article_detail' pk=article.pk %}" class="btn btn-primary">Читати далі  <span class="ion-ios-arrow-round-forward"></span></a></p>
               <p class="ml-auto mb-0">

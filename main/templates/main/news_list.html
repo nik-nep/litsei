@@ -39,12 +39,12 @@
 								<span><i class="icon-calendar mr-2"></i>{{ article.published_date|date:"d.m.Y" }}</span>
 							</p>
 							<h6><a href="{% url 'article_detail' pk=article.pk %}">{{ article.title|truncatewords:15 }}</a></h6>
-                   <p>
-                   {% autoescape off %}{{ article.article_text|truncatewords:15 }}{% endautoescape %}
-                   </p>
-                   <p>
-                   {{ article.text|truncatewords:15 }}
-                   </p>
+                  {% if article.is_video_news == True %}
+                   <p></p>
+                   {% else %}
+                        <p>{% autoescape off %}{{ article.article_text|truncatewords:15 }}{% endautoescape %}</p>
+                        <p>{{ article.text|truncatewords:15 }}</p>
+                    {% endif %}
 							<!-- <p><a href="{% url 'article_detail' pk=article.pk %}" class="btn btn-primary">Далі...</a></p> -->
 						</div>
 					</div>

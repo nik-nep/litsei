@@ -35,6 +35,7 @@ class Article(models.Model):
     image = models.ImageField(blank=True, upload_to=get_timestamp_path_article,
                               verbose_name="Зображення статті")
     is_image_default = models.BooleanField(default=False, verbose_name='Стандартне зображення')
+    is_video_news = models.BooleanField(default=False, verbose_name='Відео новина')
     gallery = models.ForeignKey('photologue.Gallery', blank=True, null=True,
                               on_delete=models.PROTECT, verbose_name='Галерея статті')
     add_image = models.ManyToManyField('ArticleToImage', blank=True, related_name='articles')
