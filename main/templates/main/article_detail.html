@@ -24,10 +24,11 @@
           <div class="col-lg-8 ftco-animate">
             <h2 class="mb-3">{{ article.title }}</h2>
           <p>Дата публікації: {{ article.published_date|date:"d.m.Y" }} Рубріка: {{ article.rubric.name }}</p>
-            <p>
-              <img src="/media/{{ article.image }}" alt="" class="img-fluid">
-
-            </p>
+            {% if article.is_video_news == True %}
+              <p></p>
+            {% else %}
+            <p><img src="/media/{{ article.image }}" alt="" class="img-fluid"></p>
+            {% endif %}
             <p>{{ article.text }}</p>
             <p>{% autoescape off %}{{ article.article_text }}{% endautoescape %}</p>
             <div class="pt-0 mt-3">
