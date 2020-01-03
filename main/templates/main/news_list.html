@@ -25,11 +25,11 @@
 				<div class="row">
 {% for article in articles_paginator %}
 					<div class="col-md-3 course ftco-animate">
-            
+
             {% if article.is_image_default == True %}
-                  <div class="img" style="background-image: url({% static 'main/images/news_image.jpg)' %};"></div>
+                  <a href="{% url 'article_detail' pk=article.pk %}"><div class="img" style="background-image: url({% static 'main/images/news_image.jpg)' %};"></div></a>
             {% else %}
-						      <div class="img" style="background-image: url(/media/{{ article.image }});"></div>
+						      <a href="{% url 'article_detail' pk=article.pk %}"><div class="img" style="background-image: url(/media/{{ article.image }});"></div></a>
             {% endif %}
 
             <div class="text pt-4">
@@ -38,9 +38,14 @@
 								<span><i class="icon-table mr-2"></i></span>
 								<span><i class="icon-calendar mr-2"></i>{{ article.published_date|date:"d.m.Y" }}</span>
 							</p>
-							<h6><a href="{% url 'article_detail' pk=article.pk %}">{{ article.title|truncatewords:12 }}</a></h6>
-
-						<!--	<p><a href="{% url 'article_detail' pk=article.pk %}" class="btn btn-primary">Далі...</a></p>-->
+							<h6><a href="{% url 'article_detail' pk=article.pk %}">{{ article.title|truncatewords:15 }}</a></h6>
+                   <p>
+                   {% autoescape off %}{{ article.article_text|truncatewords:15 }}{% endautoescape %}
+                   </p>
+                   <p>
+                   {{ article.text|truncatewords:15 }}
+                   </p>
+							<!-- <p><a href="{% url 'article_detail' pk=article.pk %}" class="btn btn-primary">Далі...</a></p> -->
 						</div>
 					</div>
 {% endfor %}
