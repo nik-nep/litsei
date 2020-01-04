@@ -26,8 +26,8 @@ class Rubric(models.Model):
 
 class Article(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True,
-                              on_delete=models.PROTECT, verbose_name="Автор")
-    title = models.CharField(max_length=255, verbose_name='Назва новини, максимально - 200')
+                              on_delete=models.PROTECT, verbose_name='Автор')
+    title = models.TextField(blank=True, verbose_name='Назва новини')
 
     text = models.TextField(blank=True, verbose_name='Текст новини')
     article_text = RichTextUploadingField(blank=True, verbose_name='Стаття розширена')
@@ -42,7 +42,7 @@ class Article(models.Model):
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True, verbose_name='Дата публікації')
     rubric = models.ForeignKey('Rubric', null=True,
-                               on_delete=models.PROTECT, verbose_name="Рубрика")
+                               on_delete=models.PROTECT, verbose_name='Рубрика')
     is_active = models.BooleanField(default=True, verbose_name='Опубліковано')
 
     def delete(self, *args, **kwargs):
@@ -71,14 +71,14 @@ class AdditionalImage(models.Model):
     art_photo = models.ForeignKey(Article, on_delete=models.CASCADE,
                            verbose_name='Новини')
     image = models.ImageField(upload_to=get_timestamp_path_article_photo,
-                    verbose_name="Зображення")
+                    verbose_name='Зображення')
     class Meta:
         verbose_name_plural = 'Додаткові зображення'
         verbose_name = 'Додаткове зображення'
 
 class ArticleToImage(models.Model):
     image = models.ImageField(upload_to=get_timestamp_path_article_photo,
-                    verbose_name="Загальне Зображення")
+                    verbose_name='Загальне Зображення')
     class Meta:
         verbose_name_plural = 'Загальні додаткові зображення'
         verbose_name = 'Загальне додаткове зображення'
