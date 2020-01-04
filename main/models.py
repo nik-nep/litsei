@@ -191,8 +191,8 @@ class Metodikfile(models.Model):
         verbose_name = 'Додатковий файл'
 
 class PravilaPryiomu(models.Model):
-    title = models.CharField(max_length = 200, db_index=True, verbose_name='Назва')
-    text = models.TextField(blank=True, db_index=True, verbose_name='Опис')
+    title = models.CharField(max_length = 200, verbose_name='Назва')
+    text = models.TextField(blank=True, verbose_name='Опис')
     format_text = RichTextUploadingField(blank=True, verbose_name='Опис розширено')
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True, verbose_name='Дата публікації')
