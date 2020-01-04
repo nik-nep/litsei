@@ -27,9 +27,9 @@ class Rubric(models.Model):
 class Article(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True,
                               on_delete=models.PROTECT, verbose_name="Автор")
-    title = models.CharField(max_length = 200, db_index=True, verbose_name='Назва новини')
+    title = models.CharField(max_length = 250, verbose_name='Назва новини, максимально - 250')
 
-    text = models.TextField(blank=True, db_index=True, verbose_name='Текст новини')
+    text = models.TextField(blank=True, verbose_name='Текст новини')
     article_text = RichTextUploadingField(blank=True, verbose_name='Стаття розширена')
     tags = models.ManyToManyField('Tag', blank=True, related_name='articles')
     image = models.ImageField(blank=True, upload_to=get_timestamp_path_article,
