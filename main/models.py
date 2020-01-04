@@ -13,7 +13,7 @@ from photologue.models import Gallery
 
 
 class Rubric(models.Model):
-    name = models.CharField(max_length=200, db_index=True,
+    name = models.CharField(max_length=255, db_index=True,
     verbose_name="Найменування рубрики")
 
     def __str__(self):
@@ -27,7 +27,7 @@ class Rubric(models.Model):
 class Article(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True,
                               on_delete=models.PROTECT, verbose_name="Автор")
-    title = models.TextField(blank=True, verbose_name='Назва новини, максимально - 250')
+    title = models.CharField(max_length=255, verbose_name='Назва новини, максимально - 200')
 
     text = models.TextField(blank=True, verbose_name='Текст новини')
     article_text = RichTextUploadingField(blank=True, verbose_name='Стаття розширена')
