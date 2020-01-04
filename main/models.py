@@ -27,7 +27,7 @@ class Rubric(models.Model):
 class Article(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True,
                               on_delete=models.PROTECT, verbose_name="Автор")
-    title = models.CharField(max_length = 500, verbose_name='Назва новини, максимально - 250')
+    title = models.TextField(blank=True, verbose_name='Назва новини, максимально - 250')
 
     text = models.TextField(blank=True, verbose_name='Текст новини')
     article_text = RichTextUploadingField(blank=True, verbose_name='Стаття розширена')
@@ -94,7 +94,7 @@ class Tag(models.Model):
 
 
 class Department(models.Model):
-    name = models.CharField(max_length=500, db_index=True,
+    name = models.CharField(max_length=255, db_index=True,
     verbose_name="Департамент")
 
     def __str__(self):
@@ -106,7 +106,7 @@ class Department(models.Model):
         ordering = ["name"]
 
 class Educationlevel(models.Model):
-    name = models.CharField(max_length=500, db_index=True,
+    name = models.CharField(max_length=255, db_index=True,
     verbose_name="Освітньо-кваліфікаційний рівень")
 
     def __str__(self):
@@ -118,7 +118,7 @@ class Educationlevel(models.Model):
         ordering = ["name"]
 
 class Qualification(models.Model):
-    name = models.CharField(max_length=500, db_index=True,
+    name = models.CharField(max_length=255, db_index=True,
     verbose_name="Кваліфікаційна категорія")
 
     def __str__(self):
@@ -131,14 +131,14 @@ class Qualification(models.Model):
 
 
 class Staff(models.Model):
-    last_name = models.CharField(max_length = 500, verbose_name='Прізвище')
-    first_name = models.CharField(max_length = 500, verbose_name="Ім'я")
-    patronymic = models.CharField(blank=True, max_length = 500,
+    last_name = models.CharField(max_length = 255, verbose_name='Прізвище')
+    first_name = models.CharField(max_length = 255, verbose_name="Ім'я")
+    patronymic = models.CharField(blank=True, max_length = 255,
         verbose_name='По батькові')
-    position = models.CharField(blank=True, max_length = 500, verbose_name='Посада')
-    position_abb = models.CharField(blank=True, max_length = 500, verbose_name='Посада скороченно')
-    education = models.CharField(blank=True, max_length = 500, verbose_name='Освіта')
-    specialty= models.CharField(blank=True, max_length = 500, verbose_name='Фах')
+    position = models.CharField(blank=True, max_length = 255, verbose_name='Посада')
+    position_abb = models.CharField(blank=True, max_length = 255, verbose_name='Посада скороченно')
+    education = models.CharField(blank=True, max_length = 255, verbose_name='Освіта')
+    specialty= models.CharField(blank=True, max_length = 255, verbose_name='Фах')
     level = models.ForeignKey('Educationlevel', null=True, blank=True,
         on_delete=models.PROTECT, verbose_name="Освітньо-кваліфікаційний рівень")
     qualification = models.ForeignKey('Qualification', null=True, blank=True,
@@ -177,7 +177,7 @@ class Staff(models.Model):
         ordering = ["sort_staff"]
 
 class Metodikfile(models.Model):
-    title = models.CharField(max_length=500)
+    title = models.CharField(max_length=255)
     mf = models.ForeignKey(Staff, on_delete=models.CASCADE,
                                verbose_name='Оберіть працівника')
     file = models.FileField(upload_to='materials',
@@ -191,7 +191,7 @@ class Metodikfile(models.Model):
         verbose_name = 'Додатковий файл'
 
 class PravilaPryiomu(models.Model):
-    title = models.CharField(max_length = 500, verbose_name='Назва')
+    title = models.CharField(max_length = 255, verbose_name='Назва')
     text = models.TextField(blank=True, verbose_name='Опис')
     format_text = RichTextUploadingField(blank=True, verbose_name='Опис розширено')
     created_date = models.DateTimeField(default=timezone.now)
