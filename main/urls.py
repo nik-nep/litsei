@@ -19,6 +19,7 @@ urlpatterns = [
     path('public', public),
     path('contact', contact),
     path('draft/', draft),
+    path('zvit/', zvit_director),
     # path('gallery/', gallery),
     path('rubric/<int:pk>', rubric_newss_list, name='rubric_newss_list'),
     path('photologue/', include('photologue.urls', namespace='photologue')),

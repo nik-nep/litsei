@@ -145,3 +145,19 @@ def contact(request):
                 'rubrics': rubrics,
                 }
     return render(request, 'main/contact.html', context)
+
+def zvit_director(request):
+    zvit = ZvitDirector.objects.filter(zvit_active=True)
+    zvit_file = UploadFile.objects.all()
+    last_3_articles = Article.objects.filter(is_active=True)[0:3]
+    last_2_articles = Article.objects.filter(is_active=True)[:2]
+    tags = Tag.objects.all()
+    totall_art = Article.objects.filter(is_active=True).count()
+    rubrics = Rubric.objects.annotate(Count('article'))
+    context = {'rubrics': rubrics,
+              'totall_art': totall_art, 'tags': tags,
+              'last_3_articles': last_3_articles,
+              'last_2_articles': last_2_articles,
+              'zvit': zvit, 'zvit_file': zvit_file
+              }
+    return render(request, 'main/zvit.html', context)

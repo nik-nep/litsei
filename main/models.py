@@ -209,3 +209,37 @@ class PravilaPryiomu(models.Model):
         verbose_name_plural = 'Правила прийому'
         verbose_name = 'Правила прийому'
         ordering = ["-published_date"]
+
+class ZvitDirector(models.Model):
+    zvit_title = models.TextField(blank=True, verbose_name='Назва Звіту')
+    zvit_text = RichTextUploadingField(blank=True, verbose_name='Текст Звіту')
+    zvit_image = models.ImageField(blank=True, upload_to=get_timestamp_path_article,
+                              verbose_name="Зображення Звіту")
+    zvit_active = models.BooleanField(default=True, verbose_name='Опубліковано')
+
+    def delete(self, *args, **kwargs):
+        for up_file in self.uploadfile_set.all():
+            up_file.delete()
+        super().delete(*args, **kwargs)
+
+    def __str__(self):
+        return self.zvit_title
+
+    class Meta:
+        verbose_name_plural = 'Звіти Директора'
+        verbose_name = 'Звіт Директора'
+
+
+class UploadFile(models.Model):
+    title = models.CharField(max_length=255)
+    up_file = models.ForeignKey(ZvitDirector, on_delete=models.CASCADE,
+                                   verbose_name='Оберіть Звіт')
+    file = models.FileField(upload_to='materials',
+                        verbose_name="Файл Звіту")
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name_plural = 'Файли Звіту'
+        verbose_name = 'Файл Звіту'
