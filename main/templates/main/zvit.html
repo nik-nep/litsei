@@ -47,13 +47,13 @@
                 </div>
               </form>
             </div>
+
             <div class="sidebar-box ftco-animate">
-            	<h3>Рубріки</h3>
+            	<h3>Рубрики</h3>
               <ul class="categories">
 {% for rubric in rubrics %}
-                <li><a href="#">{{ rubric.name }} <span>{{ totall_art }}</span></a></li>
+                <li><a href="/rubric/{{ rubric.pk }}">{{ rubric.name }} <span>{{ rubric.article__count }}</span></a></li>
 {% endfor %}
-
               </ul>
             </div>
 
