@@ -194,6 +194,9 @@ class PravilaPryiomu(models.Model):
     title = models.CharField(max_length = 255, verbose_name='Назва')
     text = models.TextField(blank=True, verbose_name='Опис')
     format_text = RichTextUploadingField(blank=True, verbose_name='Опис розширено')
+    image = models.ImageField(blank=True, upload_to=get_timestamp_path_article,
+                                  verbose_name="Зображення Правил")
+    file = models.FileField(blank=True, upload_to='materials', verbose_name="Файл Правил")
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True, verbose_name='Дата публікації')
     is_active = models.BooleanField(default=True)

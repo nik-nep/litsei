@@ -30,8 +30,10 @@
             </p>
             <p>{{ prv.text }}</p>
             <p>{% autoescape off%}{{ prv.format_text }}{% endautoescape %}</p>
-
+            <a href="/media/{{ prv.file }}" class="badge badge-warning">ЗАВАНТАЖИТИ: {{ prv.title }}</a>
 {% endfor %}
+
+
 
           </div>
           <div class="pt-0 mt-3">
@@ -47,13 +49,13 @@
                 </div>
               </form>
             </div>
+
             <div class="sidebar-box ftco-animate">
-            	<h3>Рубріки</h3>
+            	<h3>Рубрики</h3>
               <ul class="categories">
 {% for rubric in rubrics %}
-                <li><a href="#">{{ rubric.name }} <span>{{ totall_art }}</span></a></li>
+                <li><a href="/rubric/{{ rubric.pk }}">{{ rubric.name }} <span>{{ rubric.article__count }}</span></a></li>
 {% endfor %}
-
               </ul>
             </div>
 
