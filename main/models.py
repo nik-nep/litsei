@@ -246,3 +246,56 @@ class UploadFile(models.Model):
     class Meta:
         verbose_name_plural = 'Файли Звіту'
         verbose_name = 'Файл Звіту'
+
+# class GroupLitsei(models.Model):
+#     title_group = models.CharField(blank=True, max_length=255, verbose_name='Групи')
+#     plan = models.ManyToManyField('Plans', blank=True, related_name='plans')
+#
+#     def __str__(self):
+#         return self.title_group
+#
+#     class Meta:
+#         verbose_name_plural = 'Назви груп'
+#         verbose_name = 'Назва групи'
+#
+# class Plans(models.Model):
+#     position_nimber = models.PositiveIntegerField(blank=True, verbose_name='Позиція в таблиці')
+#     title = models.CharField(max_length=255)
+#     period = models.CharField(max_length=255)
+#
+#
+#     def __str__(self):
+#         return self.title
+#
+#     class Meta:
+#         verbose_name_plural = "Плани навчання"
+#         verbose_name = "План навчання"
+#         ordering = ["position_nimber"]
+
+# class Student(models.Model):
+#     last_name = models.CharField(max_length = 255, verbose_name='Прізвище')
+#     first_name = models.CharField(max_length = 255, verbose_name="Ім'я")
+#     patronymic = models.CharField(blank=True, max_length = 255,
+#         verbose_name='По батькові')
+#     group = models.ForeignKey('GroupLitsei', on_delete=models.PROTECT,
+#                                verbose_name='Оберіть групу')
+#     birthday = models.DateField(blank=True, null=True, verbose_name='Дата народження')
+#     start_studying = models.DateField(blank=True, null=True, verbose_name='Дата зарахування')
+#     end_studying = models.DateField(blank=True, null=True, verbose_name='Дата випуску')
+#     email = models.EmailField(blank=True, max_length = 255, verbose_name='Електронна адреса')
+#     phone = models.CharField(max_length=20)
+#
+#     image = models.ImageField(blank=True, upload_to='students',
+#                                verbose_name="Фото")
+#
+#
+#     def __str__(self):
+#         ln = self.last_name
+#         fn = self.first_name
+#         pn = self.patronymic
+#         full_name = ln + " " + fn + " " + pn
+#         return full_name
+#
+#     class Meta:
+#         verbose_name_plural = "Студенти"
+#         verbose_name = "Студент"
