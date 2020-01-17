@@ -22,5 +22,8 @@ admin.site.register(AdditionalImage)
 admin.site.register(ArticleToImage)
 admin.site.register(ZvitDirector)
 admin.site.register(UploadFile)
+admin.site.register(PlanRoboty)
+admin.site.register(PeriodPlans)
+
 # admin.site.register(GroupLitsei)
 # admin.site.register(Plans)

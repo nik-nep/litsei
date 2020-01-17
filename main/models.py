@@ -247,6 +247,47 @@ class UploadFile(models.Model):
         verbose_name_plural = 'Файли Звіту'
         verbose_name = 'Файл Звіту'
 
+class PeriodPlans(models.Model):
+    name = models.CharField(max_length=100, db_index=True,
+    verbose_name="План роботи за:")
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = "Період планів"
+        verbose_name = "Період Плану"
+        ordering = ["-name"]
+
+class PlanRoboty(models.Model):
+    title = models.CharField(blank=True, max_length=100, verbose_name='План роботи')
+    text = models.TextField(blank=True, verbose_name='Текст')
+    image = models.ImageField(blank=True, upload_to=get_timestamp_path_article,
+                              verbose_name="Зображення")
+    is_image_default = models.BooleanField(default=False, verbose_name='Стандартне зображення')
+    file = models.FileField(upload_to='plans', verbose_name="Плани роботи")
+    created_date = models.DateTimeField(default=timezone.now)
+
+    published_date = models.DateTimeField(blank=True, null=True, verbose_name='Дата публікації')
+    period = models.ForeignKey('PeriodPlans', null=True,
+                               on_delete=models.CASCADE, verbose_name='Період планів')
+    is_active = models.BooleanField(default=False, verbose_name='Активний план')
+
+    def publish(self):
+        self.published_date = timezone.now()
+        self.save()
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name_plural = 'Плани роботи'
+        verbose_name = 'План роботи'
+        ordering = ["-published_date"]
+
+
+
+
 # class GroupLitsei(models.Model):
 #     title_group = models.CharField(blank=True, max_length=255, verbose_name='Групи')
 #     plan = models.ManyToManyField('Plans', blank=True, related_name='plans')

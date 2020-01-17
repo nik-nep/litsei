@@ -161,3 +161,31 @@ def zvit_director(request):
               'zvit': zvit, 'zvit_file': zvit_file
               }
     return render(request, 'main/zvit.html', context)
+
+def plans(request):
+    last_3_articles = Article.objects.filter(is_active=True)[0:3]
+    last_2_articles = Article.objects.filter(is_active=True)[:2]
+    old_plans = PeriodPlans.objects.all()
+    plan_active = PlanRoboty.objects.filter(is_active=True)
+    rubrics = Rubric.objects.annotate(Count('article'))
+    tags = Tag.objects.all()
+    totall_art = Article.objects.filter().count()
+    context = {'rubrics': rubrics, 'old_plans': old_plans,
+        'totall_art': totall_art, 'tags': tags,
+        'last_3_articles': last_3_articles,
+        'last_2_articles': last_2_articles,
+        'plan_active': plan_active,
+        }
+    return render(request, 'main/plans.html', context)
+
+def old_plans_list(request, pk):
+    plans = PlanRoboty.objects.filter(period=pk, is_active=False)
+    last_2_articles = Article.objects.filter(is_active=True)[:2]
+    rubrics = Rubric.objects.all()
+    old_plans = PeriodPlans.objects.all()
+    period = get_object_or_404(PeriodPlans, pk=pk)
+    context = {'plans': plans, 'last_2_articles': last_2_articles,
+              'period': period, 'rubrics': rubrics,
+              'old_plans': old_plans,
+              }
+    return render(request, 'main/old_plans_list.html', context)
