@@ -24,6 +24,7 @@ admin.site.register(ZvitDirector)
 admin.site.register(UploadFile)
 admin.site.register(PlanRoboty)
 admin.site.register(PeriodPlans)
+admin.site.register(Professions)
 
 # admin.site.register(GroupLitsei)
 # admin.site.register(Plans)

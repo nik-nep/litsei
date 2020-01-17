@@ -21,6 +21,7 @@ urlpatterns = [
     path('draft/', draft),
     path('zvit/', zvit_director),
     path('plans/', plans),
+    path('profession/', profession),
     # path('gallery/', gallery),
     path('rubric/<int:pk>', rubric_newss_list, name='rubric_newss_list'),
     path('old_plans/<int:pk>', old_plans_list, name='old_plans_list'),

@@ -189,3 +189,17 @@ def old_plans_list(request, pk):
               'old_plans': old_plans,
               }
     return render(request, 'main/old_plans_list.html', context)
+
+def profession(request):
+    prof = Professions.objects.all()
+    last_3_articles = Article.objects.filter(is_active=True)[0:3]
+    last_2_articles = Article.objects.filter(is_active=True)[:2]
+    rubrics = Rubric.objects.all()
+    tags = Tag.objects.all()
+    totall_art = Article.objects.filter(is_active=True).count()
+    context = {'rubrics': rubrics, 'prof': prof,
+        'totall_art': totall_art, 'tags': tags,
+        'last_3_articles': last_3_articles,
+        'last_2_articles': last_2_articles,
+        }
+    return render(request, 'main/profession.html', context)

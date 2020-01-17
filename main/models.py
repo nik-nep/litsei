@@ -286,7 +286,28 @@ class PlanRoboty(models.Model):
         ordering = ["-published_date"]
 
 
+class Professions(models.Model):
+    TYPEPROF = (
+                (None, 'Виберіть тип професії'),
+                ('b', 'первинна професійна підготовка'),
+                ('c', 'професійно-технічне навчання (курсова підготовка)'),
+    )
+    position_nimber = models.PositiveIntegerField(blank=True, verbose_name='Позиція в таблиці')
+    type_prof = models.CharField(max_length=1, choices=TYPEPROF)
+    table_number = models.PositiveIntegerField(blank=True, verbose_name='Номер таблиці')
+    code_prof = models.CharField(blank=True, max_length=25, verbose_name='Код професії')
+    name_prof = models.CharField(blank=True, max_length=255, verbose_name='Назва професії')
+    license_amount = models.PositiveIntegerField(blank=True, verbose_name='Ліцензований обсяг')
+    term_of_study_9 = models.CharField(blank=True, max_length=50, verbose_name='Термін навчання на базі 9 класів')
+    term_of_study_11 = models.CharField(blank=True, max_length=50, verbose_name='Термін навчання на базі 11 класів')
 
+    def __str__(self):
+        return self.name_prof
+
+    class Meta:
+        verbose_name_plural = 'Професія'
+        verbose_name = 'Професії'
+        ordering = ["position_nimber"]
 
 # class GroupLitsei(models.Model):
 #     title_group = models.CharField(blank=True, max_length=255, verbose_name='Групи')
