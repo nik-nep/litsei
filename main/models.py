@@ -309,6 +309,46 @@ class Professions(models.Model):
         verbose_name = 'Професії'
         ordering = ["position_nimber"]
 
+
+class TrainingCenter(models.Model):
+    title = models.CharField(max_length=255, db_index=True,
+    verbose_name="Найменування НЦ")
+    tc_text = RichTextUploadingField(blank=True, verbose_name='Опис НЦ')
+    image = models.ImageField(blank=True, upload_to=get_timestamp_path_article,
+                              verbose_name="Зображення НЦ")
+    is_active = models.BooleanField(default=True, verbose_name='Активний')
+    tc_sort = models.PositiveIntegerField(blank=True, verbose_name='Сортування')
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name_plural = "Навчальні центри"
+        verbose_name = "Навчальний центр"
+        ordering = ["tc_sort"]
+
+class ResourcesCenter(models.Model):
+    title = models.TextField(blank=True, verbose_name='Назва ресурсу')
+    text = RichTextUploadingField(blank=True, verbose_name='Опис ресурсу')
+    image = models.ImageField(blank=True, upload_to=get_timestamp_path_article,
+                              verbose_name="Зображення ресурсу")
+    is_image_default = models.BooleanField(default=False, verbose_name='Стандартне зображення')
+    gallery = models.ForeignKey('photologue.Gallery', blank=True, null=True,
+                              on_delete=models.PROTECT, verbose_name='Галерея статті')
+    created_date = models.DateTimeField(default=timezone.now)
+    training_center = models.ForeignKey('TrainingCenter', null=True,
+                               on_delete=models.PROTECT, verbose_name='Навчальний центр')
+    is_active = models.BooleanField(default=True, verbose_name='Опубліковано')
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name_plural = 'Ресурси'
+        verbose_name = 'Ресурс'
+        ordering = ["-created_date"]
+
+
 # class GroupLitsei(models.Model):
 #     title_group = models.CharField(blank=True, max_length=255, verbose_name='Групи')
 #     plan = models.ManyToManyField('Plans', blank=True, related_name='plans')

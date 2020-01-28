@@ -29,8 +29,10 @@ def home(request):
     articles = Article.objects.filter(is_active=True)[:3]
     last_2_articles = Article.objects.filter(is_active=True)[:2]
     rubrics = Rubric.objects.annotate(Count('article'))
+    training_center = TrainingCenter.objects.filter(is_active=True)[:4]
     context = {'articles': articles, 'last_2_articles': last_2_articles,
                 'rubrics': rubrics,
+                'training_center': training_center,
               }
     return render(request, 'main/index.html', context)
 
@@ -203,3 +205,43 @@ def profession(request):
         'last_2_articles': last_2_articles,
         }
     return render(request, 'main/profession.html', context)
+
+def trainingcenter_detal(request, pk):
+    try:
+        queryset = Gallery.objects.on_site().is_public().filter(pk=resourcescenter.gallery.pk)
+    except:
+        queryset = []
+    resources = ResourcesCenter.objects.filter(training_center=pk, is_active=True)
+    training_center = get_object_or_404(TrainingCenter, pk=pk)
+    last_3_articles = Article.objects.filter(is_active=True)[0:3]
+    last_2_articles = Article.objects.filter(is_active=True)[:2]
+    rubrics = Rubric.objects.all()
+    tags = Tag.objects.all()
+    totall_art = Article.objects.filter(is_active=True).count()
+    context = {'rubrics': rubrics,
+        'totall_art': totall_art, 'tags': tags,
+        'last_3_articles': last_3_articles,
+        'last_2_articles': last_2_articles,
+        'resources': resources, 'training_center': training_center,
+        'queryset': queryset,
+        }
+    return render(request, 'main/r_centre.html', context)
+
+def gallery(request, pk):
+    resourcescenter = get_object_or_404(ResourcesCenter, pk=pk)
+    try:
+        queryset = Gallery.objects.on_site().is_public().filter(pk=resourcescenter.gallery.pk)
+    except:
+        queryset = []
+    last_3_articles = Article.objects.filter(is_active=True)[0:3]
+    last_2_articles = Article.objects.filter(is_active=True)[:2]
+    tags = Tag.objects.all()
+    totall_art = Article.objects.filter(is_active=True).count()
+    rubrics = Rubric.objects.annotate(Count('article'))
+    context = {'rubrics': rubrics,
+              'totall_art': totall_art, 'tags': tags,
+              'last_3_articles': last_3_articles,
+              'last_2_articles': last_2_articles,
+              'queryset': queryset, 'resourcescenter': resourcescenter,
+              }
+    return render(request, 'main/gallery.html', context)
