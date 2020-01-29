@@ -16,7 +16,7 @@ from django.views.generic.list import ListView
 def events(request):
     last_3_articles = Article.objects.filter(is_active=True)[0:3]
     last_2_articles = Article.objects.filter(is_active=True)[:2]
-    rubrics = Rubric.objects.all()
+    rubrics = Rubric.objects.annotate(Count('article'))
     tags = Tag.objects.all()
     totall_art = Article.objects.filter(is_active=True).count()
     events = Events.objects.filter(is_active=True)

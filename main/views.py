@@ -15,7 +15,7 @@ from django.views.generic.list import ListView
 def draft(request):
     last_3_articles = Article.objects.filter(is_active=True)[0:3]
     last_2_articles = Article.objects.filter(is_active=True)[:2]
-    rubrics = Rubric.objects.all()
+    rubrics = Rubric.objects.annotate(Count('article'))
     tags = Tag.objects.all()
     totall_art = Article.objects.filter(is_active=True).count()
     context = {'rubrics': rubrics,
@@ -130,9 +130,9 @@ def pravyla_pryiomu(request):
     pravyla = PravilaPryiomu.objects.reverse()[0:1]
     last_3_articles = Article.objects.filter(is_active=True)[0:3]
     last_2_articles = Article.objects.filter(is_active=True)[:2]
-    rubrics = Rubric.objects.all()
+    rubrics = Rubric.objects.annotate(Count('article'))
     tags = Tag.objects.all()
-    totall_art = Article.objects.filter().count()
+    totall_art = Article.objects.filter(is_active=True).count()
     context = {'pravyla': pravyla, 'rubrics': rubrics,
             'totall_art': totall_art, 'tags': tags,
             'last_3_articles': last_3_articles,
@@ -196,7 +196,7 @@ def profession(request):
     prof = Professions.objects.all()
     last_3_articles = Article.objects.filter(is_active=True)[0:3]
     last_2_articles = Article.objects.filter(is_active=True)[:2]
-    rubrics = Rubric.objects.all()
+    rubrics = Rubric.objects.annotate(Count('article'))
     tags = Tag.objects.all()
     totall_art = Article.objects.filter(is_active=True).count()
     context = {'rubrics': rubrics, 'prof': prof,
@@ -215,7 +215,7 @@ def trainingcenter_detal(request, pk):
     training_center = get_object_or_404(TrainingCenter, pk=pk)
     last_3_articles = Article.objects.filter(is_active=True)[0:3]
     last_2_articles = Article.objects.filter(is_active=True)[:2]
-    rubrics = Rubric.objects.all()
+    rubrics = Rubric.objects.annotate(Count('article'))
     tags = Tag.objects.all()
     totall_art = Article.objects.filter(is_active=True).count()
     context = {'rubrics': rubrics,
