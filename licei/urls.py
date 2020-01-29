@@ -28,6 +28,7 @@ urlpatterns = [
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('photologue/', include('photologue.urls', namespace='photologue')),
     path('admin/', admin.site.urls),
+    path('events/', include('eventsapp.urls')),
     path('', include('main.urls')),
 
 ]
