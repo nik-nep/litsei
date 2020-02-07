@@ -31,6 +31,14 @@
             {% endif %}
             <p>{{ article.text }}</p>
             <p>{% autoescape off %}{{ article.article_text }}{% endautoescape %}</p>
+{% if article.is_video_article == True %}
+            <video controls width="710" height="538" poster="/media/{{ article.image }}" preload="none">
+              <source src="/media/{{ article.video }}" type="video/mp4">
+            </video>
+            {% else %}
+            <p></p>
+{% endif %}
+
             <div class="pt-0 mt-3">
 
         <!--      <div class="tag-widget post-tag-container mb-5 mt-5">
