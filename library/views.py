@@ -17,7 +17,7 @@ def library(request):
     last_3_articles = Article.objects.filter(is_active=True)[0:3]
     last_2_articles = Article.objects.filter(is_active=True)[:2]
     books = Book.objects.all()
-    letters = FilterLetter.objects.all()
+    letters = FilterLetter.objects.order_by("filter_letter")
     paginator = Paginator(books, 6)
     page = request.GET.get('page')
     books_paginator = paginator.get_page(page)
@@ -51,7 +51,7 @@ def category_books(request, pk):
     category_name = get_object_or_404(Category, pk=pk)
     section_category = SectionCategory.objects.filter(category=pk)
     tags = Tag.objects.all()
-    letters = FilterLetter.objects.all()
+    letters = FilterLetter.objects.order_by("filter_letter")
     totall_art = Article.objects.filter(is_active=True).count()
     context = {'rubrics': rubrics, 'books': books, 'category': category,
             'totall_art': totall_art, 'tags': tags,
@@ -76,7 +76,7 @@ def rubric_books(request, pk):
     section_category = SectionCategory.objects.all()
     section_name = get_object_or_404(SectionCategory, pk=pk)
     tags = Tag.objects.all()
-    letters = FilterLetter.objects.all()
+    letters = FilterLetter.objects.order_by("filter_letter")
     totall_art = Article.objects.filter(is_active=True).count()
     context = {'rubrics': rubrics, 'books': books, 'category': category,
             'totall_art': totall_art, 'tags': tags,
@@ -98,7 +98,7 @@ def filter_books(request, pk):
     last_2_articles = Article.objects.filter(is_active=True)[:2]
     rubrics = Rubric.objects.annotate(Count('article'))
     category = Category.objects.annotate(Count('book'))
-    letters = FilterLetter.objects.all()
+    letters = FilterLetter.objects.order_by("filter_letter")
     letter_name = get_object_or_404(FilterLetter, pk=pk)
     #section_category = SectionCategory.objects.all()
     #section_name = get_object_or_404(SectionCategory, pk=pk)
