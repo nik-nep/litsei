@@ -29,6 +29,7 @@ urlpatterns = [
     path('photologue/', include('photologue.urls', namespace='photologue')),
     path('admin/', admin.site.urls),
     path('events/', include('eventsapp.urls')),
+    path('library/', include('library.urls')),
     path('', include('main.urls')),
 
 ]

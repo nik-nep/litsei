@@ -25,6 +25,84 @@ def draft(request):
         }
     return render(request, 'main/draft_page.html', context)
 
+def navchalna_robota(request):
+    last_3_articles = Article.objects.filter(is_active=True)[0:3]
+    last_2_articles = Article.objects.filter(is_active=True)[:2]
+    rubrics = Rubric.objects.annotate(Count('article'))
+    tags = Tag.objects.all()
+    totall_art = Article.objects.filter(is_active=True).count()
+    context = {'rubrics': rubrics,
+        'totall_art': totall_art, 'tags': tags,
+        'last_3_articles': last_3_articles,
+        'last_2_articles': last_2_articles,
+        }
+    return render(request, 'main/navchalna_robota.html', context)
+
+def vykhovna_robota(request):
+    last_3_articles = Article.objects.filter(is_active=True)[0:3]
+    last_2_articles = Article.objects.filter(is_active=True)[:2]
+    rubrics = Rubric.objects.annotate(Count('article'))
+    tags = Tag.objects.all()
+    totall_art = Article.objects.filter(is_active=True).count()
+    context = {'rubrics': rubrics,
+        'totall_art': totall_art, 'tags': tags,
+        'last_3_articles': last_3_articles,
+        'last_2_articles': last_2_articles,
+        }
+    return render(request, 'main/vykhovna_robota.html', context)
+
+def metodychna_robota(request):
+    last_3_articles = Article.objects.filter(is_active=True)[0:3]
+    last_2_articles = Article.objects.filter(is_active=True)[:2]
+    rubrics = Rubric.objects.annotate(Count('article'))
+    tags = Tag.objects.all()
+    totall_art = Article.objects.filter(is_active=True).count()
+    context = {'rubrics': rubrics,
+        'totall_art': totall_art, 'tags': tags,
+        'last_3_articles': last_3_articles,
+        'last_2_articles': last_2_articles,
+        }
+    return render(request, 'main/metodychna_robota.html', context)
+
+def rozklad_urokiv(request):
+    last_3_articles = Article.objects.filter(is_active=True)[0:3]
+    last_2_articles = Article.objects.filter(is_active=True)[:2]
+    rubrics = Rubric.objects.annotate(Count('article'))
+    tags = Tag.objects.all()
+    totall_art = Article.objects.filter(is_active=True).count()
+    context = {'rubrics': rubrics,
+        'totall_art': totall_art, 'tags': tags,
+        'last_3_articles': last_3_articles,
+        'last_2_articles': last_2_articles,
+        }
+    return render(request, 'main/rozklad_urokiv.html', context)
+
+def struktura_nr(request):
+    last_3_articles = Article.objects.filter(is_active=True)[0:3]
+    last_2_articles = Article.objects.filter(is_active=True)[:2]
+    rubrics = Rubric.objects.annotate(Count('article'))
+    tags = Tag.objects.all()
+    totall_art = Article.objects.filter(is_active=True).count()
+    context = {'rubrics': rubrics,
+        'totall_art': totall_art, 'tags': tags,
+        'last_3_articles': last_3_articles,
+        'last_2_articles': last_2_articles,
+        }
+    return render(request, 'main/struktura_navchalnoho_roku.html', context)
+
+def stypendialne_zabezpechennya(request):
+    last_3_articles = Article.objects.filter(is_active=True)[0:3]
+    last_2_articles = Article.objects.filter(is_active=True)[:2]
+    rubrics = Rubric.objects.annotate(Count('article'))
+    tags = Tag.objects.all()
+    totall_art = Article.objects.filter(is_active=True).count()
+    context = {'rubrics': rubrics,
+        'totall_art': totall_art, 'tags': tags,
+        'last_3_articles': last_3_articles,
+        'last_2_articles': last_2_articles,
+        }
+    return render(request, 'main/stypendialne_zabezpechennya.html', context)
+
 def home(request):
     articles = Article.objects.filter(is_active=True)[:3]
     last_2_articles = Article.objects.filter(is_active=True)[:2]

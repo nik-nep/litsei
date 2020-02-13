@@ -1,0 +1,173 @@
+{% extends 'library/base.html' %}
+{% load static %}
+
+
+{% block title %}Е-Бібліотека{% endblock %}
+
+{% block content %}
+
+    <section class="hero-wrap hero-wrap-2" style="background-image: url({% static 'main/images/bg_1.jpg' %});">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+            <h1 class="mb-2 bread"></h1>
+            <p class="breadcrumbs"><span class="mr-2"><a href="/library">Е-Бібліотека <i class="ion-ios-arrow-forward"></i></a></span> <span>Видання на літеру: {{ letter_name.filter_letter }}<i class="ion-ios-arrow-forward"></i></span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="ftco-section">
+
+      <div class="row justify-content-center mb-5 pb-2">
+        <div class="pagination">
+          <span class="step-links">
+            {% if books_paginator.has_previous %}
+            <a href="?page=1">&laquo; Перша</a>
+            <a href="?page={{ books_paginator.previous_page_number }}">Попередня</a>
+            {% endif %}
+
+            <span class="current">
+              Сторінка {{ books_paginator.number }} з {{ books_paginator.paginator.num_pages }}.
+            </span>
+
+            {% if books_paginator.has_next %}
+            <a href="?page={{ books_paginator.next_page_number }}">Далі</a>
+            <a href="?page={{ books_paginator.paginator.num_pages }}">Остання &raquo;</a>
+            {% endif %}
+          </span>
+        </div>
+      </div>
+
+			<div class="container-fluid px-4">
+				<div class="row">
+
+          <div class="col-lg-9 ftco-animate">
+
+            <div class="row">
+
+              {% for book in books_paginator %}
+              <div class="col-md-6 course ftco-animate">
+                <div class="card mb-2">
+                  <div class="row no-gutters">
+                    <div class="col-md-3">
+                      {% if book.is_cover_default == True %}
+                      <img src="{% static 'library/images/icons-book-1.png' %}" class="card-img" alt="...">
+                      {% else %}
+                      <img src="media/{{ book.cover }}" class="card-img" alt="...">
+                      {% endif %}
+                    </div>
+                    <div class="col-md-9">
+                      <div class="card-body">
+                        <h5 class="card-title">{{ book.name }}</h5>
+                        <p class="card-text">{{ book.description }}</p>
+                        {% if book.file_url|length <= 5 %}
+                        <p class="align-bottom"><a href="/media/{{ book.file }}" class="badge badge-warning">ЗАВАНТАЖИТИ</a></p>
+                        {% else %}
+                        <p class="align-bottom"><a href="{{ book.file_url }}" class="badge badge-warning">Перейти за посиланням</a></p>
+                        {% endif %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+
+            </div>
+          </div>
+
+          <div class="pt-0 mt-3">
+
+          </div> <!-- .col-md-8 -->
+
+
+          <div class="col-lg-3 sidebar ftco-animate">
+              <!--
+            <div class="sidebar-box">
+              <form action="#" class="search-form">
+                <div class="form-group">
+                  <span class="icon icon-search"></span>
+                  <input type="text" class="form-control" placeholder="шукати...">
+                </div>
+              </form>
+            </div>
+              -->
+
+              <div class="sidebar-box ftco-animate">
+                <h3></h3>
+                <div class="block-21 mb-4 d-flex">
+                  <a class="blog-img mr-4" style="background-image: url({% static 'main/images/library.jpg' %});"></a>
+                  <div class="text">
+                    <h3 class="heading"><a href="#"></a>Електронна бібліотека КНЗ КОР «Васильківський професійний ліцей»</h3>
+                   <!--<div class="meta">
+                      <div><a href="#"><span class="icon-calendar"></span>yyyyy</a></div>
+                      <div><a href="#"><span class="icon-person"></span> mmmmm</a></div>
+                      <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+                    </div>-->
+                  </div>
+                </div>
+              </div>
+
+
+            <div class="sidebar-box ftco-animate">
+            	<h3>Категорії</h3>
+              <ul class="categories">
+{% for cat in category %}
+                <li><a href="/library/category/{{ cat.pk }}">{{ cat.name }} <span>{{ cat.book__count }}</span></a></li>
+{% endfor %}
+
+              </ul>
+            </div>
+
+
+
+          </div><!-- END COL -->
+        </div>
+			</div>
+		</section>
+
+
+    <section class="ftco-section">
+      <div class="container">
+        <div class="row justify-content-center mb-0 pb-0">
+          {% for letter in letters %}
+          <button type="button" class="btn btn-light"><h5><a href="{{ letter.pk }}">{{ letter.filter_letter }}</a></h5></button>
+          {% endfor %}
+
+        </div>
+      </div>
+    </section>
+
+    <section class="ftco-section bg-light">
+      <div class="container">
+        <div class="row justify-content-center mb-0 pb-0">
+          <div class="pagination">
+            <span class="step-links">
+              {% if books_paginator.has_previous %}
+              <a href="?page=1">&laquo; Перша</a>
+              <a href="?page={{ books_paginator.previous_page_number }}">Попередня</a>
+              {% endif %}
+
+              <span class="current">
+                Сторінка {{ books_paginator.number }} з {{ books_paginator.paginator.num_pages }}.
+              </span>
+
+              {% if books_paginator.has_next %}
+              <a href="?page={{ books_paginator.next_page_number }}">Далі</a>
+              <a href="?page={{ books_paginator.paginator.num_pages }}">Остання &raquo;</a>
+              {% endif %}
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  {% endblock %}
+
+  {% block futer %}
+  {% for last2 in last_2_articles %}
+      {% include 'main/includes/base_foter_template.html' %}
+  {% endfor %}
+  {% endblock %}
