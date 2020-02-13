@@ -39,6 +39,7 @@ class SectionCategory(models.Model):
 
 class FilterLetter(models.Model):
     filter_letter = models.CharField(max_length=1, verbose_name="Фільтрування за літерою:")
+    sort_letter = models.PositiveSmallIntegerField(blank=True, default=1, verbose_name="Сортування")
 
     def __str__(self):
             return self.filter_letter
@@ -46,7 +47,7 @@ class FilterLetter(models.Model):
     class Meta:
         verbose_name_plural = "Літери"
         verbose_name = "Літера"
-        ordering = ["filter_letter"]
+        ordering = ["sort_letter"]
 
 class PublishingHouse(models.Model):
     name = models.CharField(max_length=255, db_index=True,
