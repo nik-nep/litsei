@@ -18,7 +18,6 @@ urlpatterns = [
     path('pravyla', pravyla_pryiomu),
     path('public', public),
     path('contact', contact),
-    path('draft/', draft),
     path('navchalna/', navchalna_robota),
     path('vykhovna/', vykhovna_robota),
     path('metodychna/', metodychna_robota),
