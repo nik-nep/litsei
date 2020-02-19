@@ -11,20 +11,6 @@ from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 # from photologue.models import *
 
-
-def draft(request):
-    last_3_articles = Article.objects.filter(is_active=True)[0:3]
-    last_2_articles = Article.objects.filter(is_active=True)[:2]
-    rubrics = Rubric.objects.annotate(Count('article'))
-    tags = Tag.objects.all()
-    totall_art = Article.objects.filter(is_active=True).count()
-    context = {'rubrics': rubrics,
-        'totall_art': totall_art, 'tags': tags,
-        'last_3_articles': last_3_articles,
-        'last_2_articles': last_2_articles,
-        }
-    return render(request, 'main/draft_page.html', context)
-
 def navchalna_robota(request):
     last_3_articles = Article.objects.filter(is_active=True)[0:3]
     last_2_articles = Article.objects.filter(is_active=True)[:2]
@@ -155,7 +141,7 @@ def newss_list(request):
     articles = Article.objects.filter(is_active=True)
     last_2_articles = Article.objects.filter(is_active=True)[:2]
 
-    paginator = Paginator(articles, 4)
+    paginator = Paginator(articles, 8)
     rubrics = Rubric.objects.annotate(Count('article'))
     page = request.GET.get('page')
     articles_paginator = paginator.get_page(page)
