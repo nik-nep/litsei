@@ -36,7 +36,7 @@ def navchalna_robota(request):
         'last_3_articles': last_3_articles,
         'last_2_articles': last_2_articles,
         }
-    return render(request, 'main/navchalna_robota.html', context)
+    return render(request, 'main/navchalna.html', context)
 
 def vykhovna_robota(request):
     last_3_articles = Article.objects.filter(is_active=True)[0:3]
@@ -49,7 +49,7 @@ def vykhovna_robota(request):
         'last_3_articles': last_3_articles,
         'last_2_articles': last_2_articles,
         }
-    return render(request, 'main/vykhovna_robota.html', context)
+    return render(request, 'main/vykhovna.html', context)
 
 def metodychna_robota(request):
     last_3_articles = Article.objects.filter(is_active=True)[0:3]
@@ -62,7 +62,7 @@ def metodychna_robota(request):
         'last_3_articles': last_3_articles,
         'last_2_articles': last_2_articles,
         }
-    return render(request, 'main/metodychna_robota.html', context)
+    return render(request, 'main/metodychna.html', context)
 
 def rozklad_urokiv(request):
     last_3_articles = Article.objects.filter(is_active=True)[0:3]
@@ -75,7 +75,7 @@ def rozklad_urokiv(request):
         'last_3_articles': last_3_articles,
         'last_2_articles': last_2_articles,
         }
-    return render(request, 'main/rozklad_urokiv.html', context)
+    return render(request, 'main/rozklad.html', context)
 
 def struktura_nr(request):
     last_3_articles = Article.objects.filter(is_active=True)[0:3]
@@ -88,7 +88,7 @@ def struktura_nr(request):
         'last_3_articles': last_3_articles,
         'last_2_articles': last_2_articles,
         }
-    return render(request, 'main/struktura_navchalnoho_roku.html', context)
+    return render(request, 'main/struktura.html', context)
 
 def stypendialne_zabezpechennya(request):
     last_3_articles = Article.objects.filter(is_active=True)[0:3]
@@ -101,7 +101,7 @@ def stypendialne_zabezpechennya(request):
         'last_3_articles': last_3_articles,
         'last_2_articles': last_2_articles,
         }
-    return render(request, 'main/stypendialne_zabezpechennya.html', context)
+    return render(request, 'main/zabezpechennya.html', context)
 
 def home(request):
     articles = Article.objects.filter(is_active=True)[:3]
@@ -216,7 +216,7 @@ def pravyla_pryiomu(request):
             'last_3_articles': last_3_articles,
             'last_2_articles': last_2_articles,
             }
-    return render(request, 'main/pravyla_pryiomu.html', context)
+    return render(request, 'main/pravyla.html', context)
 
 def contact(request):
     last_2_articles = Article.objects.filter(is_active=True)[:2]
@@ -303,7 +303,7 @@ def trainingcenter_detal(request, pk):
         'resources': resources, 'training_center': training_center,
         'queryset': queryset,
         }
-    return render(request, 'main/r_centre.html', context)
+    return render(request, 'main/centre.html', context)
 
 def gallery(request, pk):
     resourcescenter = get_object_or_404(ResourcesCenter, pk=pk)

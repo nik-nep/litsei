@@ -1,8 +1,7 @@
 {% extends 'main/base_main.html' %}
 {% load static %}
 
-
-{% block title %}{% endblock %}
+{% block title %}{{ training_center.title }} Васильківського професійного ліцею{% endblock %}
 
 {% block content %}
 
@@ -11,8 +10,8 @@
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
-            <h1 class="mb-2 bread"></h1>
-            <p class="breadcrumbs"><span class="mr-2"><a href="/">Головна <i class="ion-ios-arrow-forward"></i></a></span> <span>{{ resources.title }}<i class="ion-ios-arrow-forward"></i></span></p>
+            <h1 class="mb-2 bread">{{ training_center.title }}</h1>
+            <p class="breadcrumbs"><span class="mr-2"><a href="/">Головна <i class="ion-ios-arrow-forward"></i></a></span> <span>{{ training_center.title }}<i class="ion-ios-arrow-forward"></i></span></p>
           </div>
         </div>
       </div>

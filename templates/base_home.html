@@ -5,14 +5,13 @@
   <head>
     <title>
          {% block title %}
-           Васильківський професійний ліцей
+           КНЗ КОР Васильківський професійний ліцей: сучасний заклад професійної (професійно-технічної) освіти
          {% endblock %}
     </title>
 
-  <!--
-    	<meta name="description" content="type_your_description_here">
+{% block description %}
 
--->
+{% endblock %}
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -36,8 +35,7 @@
     		<div class="row no-gutters d-flex align-items-center align-items-stretch">
     			<div class="col-md-4 d-flex align-items-center py-4">
             <a href="/"><img src="{% static 'main/images/logo-litsei-3.png' %}" class="card-img-top" alt="..."></a>
-            <!--<a class="navbar-brand" href="home">Васильків<span>ПрофЛіцей</span></a>
-            <a class="blog-img mr-4" style="background-image: url({% static 'main/images/image_1.jpg' %});"></a>   -->
+
     			</div>
 	    		<div class="col-lg-8 d-block">
 		    		<div class="row d-flex">
@@ -45,7 +43,9 @@
 					    	<div class="icon d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
 					    	<div class="text">
 					    		<span>Email</span>
-						    	<span>vasylkiv_licej@ukr.net</span>
+						      <span>vasylkiv_licej[at]ukr.net</span>
+
+
 						    </div>
 					    </div>
 					    <div class="col-md d-flex topper align-items-center align-items-stretch py-md-4">
@@ -57,36 +57,15 @@
 					    </div>
 
               <div class="col-md d-flex topper align-items-center align-items-stretch py-md-4">
-
-
-                  <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
+                <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
                   <li class="ftco-animate"><a href="https://www.facebook.com/831715013564882/" target="_blank"><span class="icon-facebook"></span></a></li>
                   <li class="ftco-animate"><a href="https://www.instagram.com/vasilkivskiiproflitsei/" target="_blank"><span class="icon-instagram"></span></a></li>
                   <li class="ftco-animate"><a href="https://www.youtube.com/channel/UCqRpCI7uGH-tBXYWRc0uVnQ/" target="_blank"><span class="icon-youtube"></span></a></li>
                 </ul>
-
-
 					    </div>
-	<!---
-			    <div class="col-md topper d-flex align-items-center justify-content-end">
-					    	<p class="mb-0">
-					    		<a href="#" class="btn py-2 px-3 btn-primary d-flex align-items-center justify-content-center">
-					    			<span>Подати заявку</span>
-					    		</a>
-					    	</p>
-					    </div>
-
-              <div class="ftco-footer-widget mb-5">
-                  <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
-                  <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                  <li class="ftco-animate"><a href="https://www.facebook.com/831715013564882/photos/a.831717983564585/1926212874115085/?type=1&theater"><span class="icon-facebook"></span></a></li>
-                  <li class="ftco-animate"><a href="https://www.instagram.com/vasilkivskiiproflitsei/"><span class="icon-instagram"></span></a></li>
-                </ul>
-              </div>
---->
-
 				    </div>
 			    </div>
+
 		    </div>
 		  </div>
     </div>
@@ -118,29 +97,29 @@
            </li>
 
            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle pl-0"
-             data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Вступнику</a>
+             data-toggle="dropdown" href="/" role="button" aria-haspopup="true" aria-expanded="false">Вступнику</a>
              <div class="dropdown-menu">
-                <a class="dropdown-item" href="/pravyla_pryiomu">Правила прийому</a>
+                <a class="dropdown-item" href="/pravyla">Правила прийому</a>
                  <a class="dropdown-item" href="/profession">Наші професії</a>
                 <a class="dropdown-item" href="/events">Графік проведення Днів відкритих дверей</a>
              </div>
            </li>
 
            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle pl-0"
-             data-toggle="dropdown" href="/draft" role="button" aria-haspopup="true" aria-expanded="false">Здобувачу освіти</a>
+             data-toggle="dropdown" href="/" role="button" aria-haspopup="true" aria-expanded="false">Здобувачу освіти</a>
              <div class="dropdown-menu">
-                <a class="dropdown-item" href="/rozklad_urokiv">Розклад уроків</a>
-                <a class="dropdown-item" href="/struktura_nr">Структура навчального року</a>
-                <a class="dropdown-item" href="/stypendialne_zabezpechennya/">Стипендіальне забезпечення</a>
+                <a class="dropdown-item" href="/rozklad">Розклад уроків</a>
+                <a class="dropdown-item" href="/struktura">Структура навчального року</a>
+                <a class="dropdown-item" href="/zabezpechennya/">Стипендіальне забезпечення</a>
              </div>
            </li>
 
            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle pl-0"
              data-toggle="dropdown" href="/" role="button" aria-haspopup="true" aria-expanded="false">Напрямки діяльності</a>
              <div class="dropdown-menu">
-                <a class="dropdown-item" href="/navchalna_robota">Навчальна робота</a>
-                <a class="dropdown-item" href="/vykhovna_robota">Виховна робота</a>
-                <a class="dropdown-item" href="/metodychna_robota">Методична робота</a>
+                <a class="dropdown-item" href="/navchalna">Навчальна робота</a>
+                <a class="dropdown-item" href="/vykhovna">Виховна робота</a>
+                <a class="dropdown-item" href="/metodychna">Методична робота</a>
                 <div class="dropdown-divider"></div>
 
                 <a class="dropdown-item" href="/library">Е-Бібліотека</a>
@@ -198,19 +177,9 @@
             </div>
           </div>
           <div class="col-md-6 col-lg-3">
-          <!--  <div class="ftco-footer-widget mb-5">
-            	<h2 class="ftco-heading-2">Підпишіться на нас!</h2>
-              <form action="#" class="subscribe-form">
-                <div class="form-group">
-                  <input type="text" class="form-control mb-2 text-center" placeholder="Enter email address">
-                  <input type="submit" value="Subscribe" class="form-control submit px-3">
-                </div>
-              </form>
-            </div> -->
             <div class="ftco-footer-widget mb-5">
             	<h2 class="ftco-heading-2 mb-0">Зв'яжіться з нами</h2>
             	<ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
-                <!-- <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li> -->
                 <li class="ftco-animate"><a href="https://www.facebook.com/831715013564882/" target="_blank"><span class="icon-facebook"></span></a></li>
                 <li class="ftco-animate"><a href="https://www.instagram.com/vasilkivskiiproflitsei/" target="_blank"><span class="icon-instagram"></span></a></li>
                 <li class="ftco-animate"><a href="https://www.youtube.com/channel/UCqRpCI7uGH-tBXYWRc0uVnQ/" target="_blank"><span class="icon-youtube"></span></a></li>
