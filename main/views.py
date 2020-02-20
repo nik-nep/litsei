@@ -169,6 +169,7 @@ def article_detail(request, pk):
     article = get_object_or_404(Article, pk=pk)
     articles = Article.objects.filter(is_active=True)
     article_to_image = ArticleToImage.objects.all()
+    dop_image_article = AdditionalImage.objects.all()
     try:
         queryset = Gallery.objects.on_site().is_public().filter(pk=article.gallery.pk)
     except:
@@ -186,7 +187,7 @@ def article_detail(request, pk):
               'last_3_articles': last_3_articles,
               'last_2_articles': last_2_articles,
               'articles': articles, 'article_to_image': article_to_image,
-              'queryset': queryset,
+              'queryset': queryset, 'dop_image_article': dop_image_article,
               }
     return render(request, 'main/article_detail.html', context)
 

@@ -70,24 +70,32 @@ class Article(models.Model):
 
 
 class AdditionalImage(models.Model):
+    title = models.CharField(blank=True, max_length=250)
     art_photo = models.ForeignKey(Article, on_delete=models.CASCADE,
                            verbose_name='Новини')
     image = models.ImageField(upload_to=get_timestamp_path_article_photo,
                     verbose_name='Зображення')
+
+    def __str__(self):
+        return self.title
+
     class Meta:
         verbose_name_plural = 'Додаткові зображення'
         verbose_name = 'Додаткове зображення'
 
 class ArticleToImage(models.Model):
-    title = models.CharField(blank=True, max_length=100)
+    title = models.CharField(blank=True, max_length=250)
     image = models.ImageField(upload_to=get_timestamp_path_article_photo,
                     verbose_name='Загальне Зображення')
+
+    def __str__(self):
+        return self.title
+
     class Meta:
         verbose_name_plural = 'Загальні додаткові зображення'
         verbose_name = 'Загальне додаткове зображення'
 
-    def __str__(self):
-        return self.title
+
 
 class Tag(models.Model):
     title = models.CharField(max_length=100)
