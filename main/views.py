@@ -168,8 +168,8 @@ def rubric_newss_list(request, pk):
 def article_detail(request, pk):
     article = get_object_or_404(Article, pk=pk)
     articles = Article.objects.filter(is_active=True)
-    article_to_image = ArticleToImage.objects.all()
-    dop_image_article = AdditionalImage.objects.all()
+    article_to_image = ArticleToImage.objects.filter(articles=pk)
+    dop_image_article = AdditionalImage.objects.filter(art_photo=pk)
     try:
         queryset = Gallery.objects.on_site().is_public().filter(pk=article.gallery.pk)
     except:
