@@ -103,6 +103,23 @@
 		</section>
 
 
+    <section class="ftco-gallery">
+      <div class="container-wrap">
+        <div class="row no-gutters">
+
+          {% for image_a in article_to_image %}
+          <div class="col-md-3 ftco-animate">
+            <a href="/media/{{ image_a.image }}" class="gallery image-popup img d-flex align-items-center" style="background-image: url(/media/{{ image_a.image }});">
+              <div class="icon mb-4 d-flex align-items-center justify-content-center">
+                <span class="icon-instagram"></span>
+              </div>
+            </a>
+          </div>
+          {% endfor %}
+
+        </div>
+      </div>
+    </section>
 
     <section class="ftco-gallery">
       <div class="container-wrap">
