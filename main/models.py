@@ -79,12 +79,15 @@ class AdditionalImage(models.Model):
         verbose_name = 'Додаткове зображення'
 
 class ArticleToImage(models.Model):
+    title = models.CharField(blank=True, max_length=100)
     image = models.ImageField(upload_to=get_timestamp_path_article_photo,
                     verbose_name='Загальне Зображення')
     class Meta:
         verbose_name_plural = 'Загальні додаткові зображення'
         verbose_name = 'Загальне додаткове зображення'
 
+    def __str__(self):
+        return self.title
 
 class Tag(models.Model):
     title = models.CharField(max_length=100)
