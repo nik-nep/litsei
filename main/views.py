@@ -155,7 +155,7 @@ def rubric_newss_list(request, pk):
     articles = Article.objects.filter(rubric=pk, is_active=True)
     last_2_articles = Article.objects.filter(is_active=True)[:2]
     rubrics = Rubric.objects.all()
-    paginator = Paginator(articles, 4)
+    paginator = Paginator(articles, 8)
     rubric = get_object_or_404(Rubric, pk=pk)
     page = request.GET.get('page')
     articles_paginator = paginator.get_page(page)
