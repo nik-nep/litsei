@@ -27,7 +27,7 @@
 				<div class="row">
           <div class="col-lg-8 ftco-animate">
             <h2 class="mb-3">{{ article.title }}</h2>
-          <p>Дата публікації: {{ article.published_date|date:"d.m.Y" }} Рубріка: {{ article.rubric.name }}</p>
+          <p>Дата публікації: {{ article.published_date|date:"d.m.Y" }} Рубрика: {{ article.rubric.name }}</p>
             {% if article.is_video_news == True %}
               <p></p>
             {% else %}
