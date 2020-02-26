@@ -1,13 +1,10 @@
 {% extends 'main/base_main.html' %}
 {% load static %}
-
 {% block title %}Про комунальний навчальний заклад Київської обласної ради Васильківський професійний ліцей{% endblock %}
 {% block description %}
-    <meta name="description" content="Заклад професійної (професійно-технічної) освіти другого атестаційного рівня, забезпечує реалізацію права громадян на здобуття професійної (професійно-технічної) освіти та повної загальної середньої освіти">
+<meta name="description" content="Заклад професійної (професійно-технічної) освіти другого атестаційного рівня, забезпечує реалізацію права громадян на здобуття професійної (професійно-технічної) освіти та повної загальної середньої освіти">
 {% endblock %}
-
 {% block content %}
-
 <section class="hero-wrap hero-wrap-2" style="background-image: url({% static 'main/images/bg_1.jpg' %});">
   <div class="overlay"></div>
   <div class="container">
@@ -19,7 +16,6 @@
     </div>
   </div>
 </section>
-
 <section class="ftco-section">
   <div class="container">
     <div class="row">
@@ -73,7 +69,6 @@
                       <li>Забезпечення ефективного функціонування ліцею в умовах ринкової економіки
                       </ul>
                     </div> <!-- .col-md-8 -->
-
                     <div class="col-lg-4 sidebar ftco-animate">
                       <div class="sidebar-box">
                         <form action="#" class="search-form">
@@ -83,7 +78,6 @@
                           </div>
                         </form>
                       </div>
-
                       <div class="sidebar-box ftco-animate">
                         <h3>Рубрики</h3>
                         <ul class="categories">
@@ -92,7 +86,6 @@
                           {% endfor %}
                         </ul>
                       </div>
-
                       <div class="sidebar-box ftco-animate">
                         <h3>Останні новини</h3>
                         {% for last3 in last_3_articles %}
@@ -107,9 +100,7 @@
                           </div>
                         </div>
                         {% endfor %}
-
                       </div>
-
                       <div class="sidebar-box ftco-animate">
                         <h3>Tag Cloud</h3>
                         <ul class="tagcloud m-0 p-0">
@@ -118,7 +109,6 @@
                           {% endfor %}
                         </ul>
                       </div>
-
                       <div class="sidebar-box ftco-animate">
                         <h3>Васильківський професійний ліцей</h3>
                         <p>Сьогодні це сучасний заклад професійної (професійно-технічної) освіти, який здійснює підготовку кваліфікованих робітників за найбільш затребуваними на ринку праці інтегрованими професіями</p>
@@ -127,10 +117,9 @@
                   </div>
                 </div>
               </section>
-
-{% endblock %}
-{% block futer %}
-{% for last2 in last_2_articles %}
-{% include 'main/includes/base_foter_template.html' %}
-{% endfor %}
-{% endblock %}
+              {% endblock %}
+              {% block futer %}
+              {% for last2 in last_2_articles %}
+              {% include 'main/includes/base_foter_template.html' %}
+              {% endfor %}
+              {% endblock %}

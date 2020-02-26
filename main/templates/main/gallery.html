@@ -1,84 +1,68 @@
 {% extends 'main/base_main.html' %}
 {% load static %}
-
-
 {% block title %}{{ resourcescenter.title }}{% endblock %}
-
 {% block content %}
-
-    <section class="hero-wrap hero-wrap-2" style="background-image: url({% static 'main/images/bg_1.jpg' %});">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row no-gutters slider-text align-items-center justify-content-center">
-          <div class="col-md-9 ftco-animate text-center">
-            <h1 class="mb-2 bread">{{ resourcescenter.title }}</h1>
-            <p class="breadcrumbs"><span class="mr-2"><a href="/">Головна <i class="ion-ios-arrow-forward"></i></a></span> <span>{{ resourcescenter.title }}<i class="ion-ios-arrow-forward"></i></span></p>
-          </div>
-        </div>
+<section class="hero-wrap hero-wrap-2" style="background-image: url({% static 'main/images/bg_1.jpg' %});">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row no-gutters slider-text align-items-center justify-content-center">
+      <div class="col-md-9 ftco-animate text-center">
+        <h1 class="mb-2 bread">{{ resourcescenter.title }}</h1>
+        <p class="breadcrumbs"><span class="mr-2"><a href="/">Головна <i class="ion-ios-arrow-forward"></i></a></span> <span>{{ resourcescenter.title }}<i class="ion-ios-arrow-forward"></i></span></p>
       </div>
-    </section>
-
-    <section class="ftco-section">
-			<div class="container">
-				<div class="row">
-          <div class="col-lg-8 ftco-animate">
-            <h2 class="mb-3">{{ resourcescenter.title }}</h2>
-            <p>{% autoescape off %}{{ resourcescenter.text }}{% endautoescape %}</p>
-            <div class="pt-0 mt-3">
-
+    </div>
+  </div>
+</section>
+<section class="ftco-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 ftco-animate">
+        <h2 class="mb-3">{{ resourcescenter.title }}</h2>
+        <p>{% autoescape off %}{{ resourcescenter.text }}{% endautoescape %}</p>
+        <div class="pt-0 mt-3">
+        </div>
+      </div> <!-- .col-md-8 -->
+      <div class="col-lg-4 sidebar ftco-animate">
+        <div class="sidebar-box">
+          <form action="#" class="search-form">
+            <div class="form-group">
+              <span class="icon icon-search"></span>
+              <input type="text" class="form-control" placeholder="шукати...">
             </div>
-          </div> <!-- .col-md-8 -->
-
-          <div class="col-lg-4 sidebar ftco-animate">
-            <div class="sidebar-box">
-              <form action="#" class="search-form">
-                <div class="form-group">
-                  <span class="icon icon-search"></span>
-                  <input type="text" class="form-control" placeholder="шукати...">
-                </div>
-              </form>
-            </div>
-
-            <div class="sidebar-box ftco-animate">
-            	<h3>Рубрики</h3>
-              <ul class="categories">
-{% for rubric in rubrics %}
-                <li><a href="/rubric/{{ rubric.pk }}">{{ rubric.name }} <span>{{ rubric.article__count }}</span></a></li>
+          </form>
+        </div>
+        <div class="sidebar-box ftco-animate">
+          <h3>Рубрики</h3>
+          <ul class="categories">
+            {% for rubric in rubrics %}
+            <li><a href="/rubric/{{ rubric.pk }}">{{ rubric.name }} <span>{{ rubric.article__count }}</span></a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div><!-- END COL -->
+    </div>
+  </div>
+</section>
+<section class="ftco-gallery">
+  <div class="container-wrap">
+    {% for gallery in queryset %}
+    <div class="row no-gutters">
+      {% for photo in gallery.public %}
+      <div class="col-md-3 ftco-animate">
+        <a href="/media/{{ photo.image }}" class="gallery image-popup img d-flex align-items-center" style="background-image: url({{ photo.get_thumbnail_url }});">
+          <div class="icon mb-4 d-flex align-items-center justify-content-center">
+            <span class="icon-instagram"></span>
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
+{% block futer %}
+{% for last2 in last_2_articles %}
+{% include 'main/includes/base_foter_template.html' %}
 {% endfor %}
-              </ul>
-            </div>
-
-
-          </div><!-- END COL -->
-        </div>
-			</div>
-		</section>
-
-    <section class="ftco-gallery">
-      <div class="container-wrap">
-        {% for gallery in queryset %}
-        <div class="row no-gutters">
-
-          {% for photo in gallery.public %}
-          <div class="col-md-3 ftco-animate">
-            <a href="/media/{{ photo.image }}" class="gallery image-popup img d-flex align-items-center" style="background-image: url({{ photo.get_thumbnail_url }});">
-              <div class="icon mb-4 d-flex align-items-center justify-content-center">
-                <span class="icon-instagram"></span>
-              </div>
-            </a>
-          </div>
-          {% endfor %}
-
-        </div>
-        {% endfor %}
-      </div>
-    </section>
-
-
-  {% endblock %}
-
-  {% block futer %}
-  {% for last2 in last_2_articles %}
-      {% include 'main/includes/base_foter_template.html' %}
-  {% endfor %}
-  {% endblock %}
+{% endblock %}

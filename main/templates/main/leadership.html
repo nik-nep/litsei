@@ -1,109 +1,89 @@
 {% extends 'main/base_main.html' %}
 {% load static %}
-
 {% block title %}Керівництво КНЗ КОР Васильківський професійний ліцей{% endblock %}
-
 {% block description %}
-    <meta name="description" content="Директор Комунального навчального закладу Київської обласної ради «Васильківський професійний ліцей» Постоленко Людмила Миколаївна">
+<meta name="description" content="Директор Комунального навчального закладу Київської обласної ради «Васильківський професійний ліцей» Постоленко Людмила Миколаївна">
 {% endblock %}
-
 {% block content %}
-
-    <section class="hero-wrap hero-wrap-2" style="background-image: url({% static 'main/images/bg_1.jpg' %});">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row no-gutters slider-text align-items-center justify-content-center">
-          <div class="col-md-9 ftco-animate text-center">
-            <h1 class="mb-2 bread">Керівництво</h1>
-            <p class="breadcrumbs"><span class="mr-2"><a href="/">Головна <i class="ion-ios-arrow-forward"></i></a></span> <span>Керівництво <i class="ion-ios-arrow-forward"></i></span></p>
-          </div>
-        </div>
+<section class="hero-wrap hero-wrap-2" style="background-image: url({% static 'main/images/bg_1.jpg' %});">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row no-gutters slider-text align-items-center justify-content-center">
+      <div class="col-md-9 ftco-animate text-center">
+        <h1 class="mb-2 bread">Керівництво</h1>
+        <p class="breadcrumbs"><span class="mr-2"><a href="/">Головна <i class="ion-ios-arrow-forward"></i></a></span> <span>Керівництво <i class="ion-ios-arrow-forward"></i></span></p>
       </div>
-    </section>
-
-    <section class="ftco-section">
-			<div class="container">
-				<div class="row">
-          <div class="col-lg-8 ftco-animate">
-          <!--  <h2 class="mb-3">ІСТОРIЯ ЗАКЛАДУ</h2> -->
-{% for st in stafs %}
-          <div class="media">
-            <div class="media-body">
-              <h3>{{ st.last_name }} {{ st.first_name }} {{ st.patronymic }}</h3>
-              <h5 class="mt-0">{{ st.position }}</h5>
-<div>
-  <span class="position mb-2">{{ st.content }}</span>
+    </div>
   </div>
-              <br />
+</section>
+<section class="ftco-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 ftco-animate">
+        {% for st in stafs %}
+        <div class="media">
+          <div class="media-body">
+            <h3>{{ st.last_name }} {{ st.first_name }} {{ st.patronymic }}</h3>
+            <h5 class="mt-0">{{ st.position }}</h5>
+            <div>
+              <span class="position mb-2">{{ st.content }}</span>
+            </div>
+            <br />
+          </div>
+        </div>
+        {% endfor %}
+      </div> <!-- .col-md-8 -->
+      <div class="col-lg-4 sidebar ftco-animate">
+        <div class="sidebar-box">
+          <form action="#" class="search-form">
+            <div class="form-group">
+              <span class="icon icon-search"></span>
+              <input type="text" class="form-control" placeholder="шукати...">
+            </div>
+          </form>
+        </div>
+        <div class="sidebar-box ftco-animate">
+          <h3>Рубрики</h3>
+          <ul class="categories">
+            {% for rubric in rubrics %}
+            <li><a href="/rubric/{{ rubric.pk }}">{{ rubric.name }} <span>{{ rubric.article__count }}</span></a></li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="sidebar-box ftco-animate">
+          <h3>Останні новини</h3>
+          {% for last3 in last_3_articles %}
+          <div class="block-21 mb-4 d-flex">
+            <a class="blog-img mr-4" style="background-image: url(/media/{{ last3.image }});"></a>
+            <div class="text">
+              <h3 class="heading"><a href="{% url 'article_detail' pk=last3.pk %}">{{ last3.title }}</a></h3>
+              <div class="meta">
+                <div><a href="#"><span class="icon-calendar"></span> {{ last3.published_date|date:"d.m.Y" }}</a></div>
+                <div><a href="#"><span class="icon-person"></span> {{ last3.author }}</a></div>
+              </div>
             </div>
           </div>
-{% endfor %}
-
-
-          </div> <!-- .col-md-8 -->
-
-
-          <div class="col-lg-4 sidebar ftco-animate">
-            <div class="sidebar-box">
-              <form action="#" class="search-form">
-                <div class="form-group">
-                  <span class="icon icon-search"></span>
-                  <input type="text" class="form-control" placeholder="шукати...">
-                </div>
-              </form>
-            </div>
-
-            <div class="sidebar-box ftco-animate">
-            	<h3>Рубрики</h3>
-              <ul class="categories">
-{% for rubric in rubrics %}
-                <li><a href="/rubric/{{ rubric.pk }}">{{ rubric.name }} <span>{{ rubric.article__count }}</span></a></li>
-{% endfor %}
-              </ul>
-            </div>
-
-            <div class="sidebar-box ftco-animate">
-              <h3>Останні новини</h3>
-{% for last3 in last_3_articles %}
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(/media/{{ last3.image }});"></a>
-                <div class="text">
-                  <h3 class="heading"><a href="{% url 'article_detail' pk=last3.pk %}">{{ last3.title }}</a></h3>
-                  <div class="meta">
-                    <div><a href="#"><span class="icon-calendar"></span> {{ last3.published_date|date:"d.m.Y" }}</a></div>
-                    <div><a href="#"><span class="icon-person"></span> {{ last3.author }}</a></div>
-                    <!--<div><a href="#"><span class="icon-chat"></span> 19</a></div>-->
-                  </div>
-                </div>
-              </div>
-{% endfor %}
-
-            </div>
-
-            <div class="sidebar-box ftco-animate">
-              <h3>Tag Cloud</h3>
-              <ul class="tagcloud m-0 p-0">
-                {% for tag in tags %}
-                <a href="#" class="tag-cloud-link">{{ tag.title }}</a>
-                {% endfor %}
-              </ul>
-            </div>
-
-
-            <div class="sidebar-box ftco-animate">
-              <h3>Васильківський професійний ліцей</h3>
-              <p>Сьогодні це сучасний заклад професійної (професійно-технічної) освіти, який здійснює підготовку кваліфікованих робітників за найбільш затребуваними на ринку праці інтегрованими професіями</p>
-            </div>
-          </div><!-- END COL -->
+          {% endfor %}
         </div>
-			</div>
-		</section>
-
-
-  {% endblock %}
-
-  {% block futer %}
-  {% for last2 in last_2_articles %}
-      {% include 'main/includes/base_foter_template.html' %}
-  {% endfor %}
-  {% endblock %}
+        <div class="sidebar-box ftco-animate">
+          <h3>Tag Cloud</h3>
+          <ul class="tagcloud m-0 p-0">
+            {% for tag in tags %}
+            <a href="#" class="tag-cloud-link">{{ tag.title }}</a>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="sidebar-box ftco-animate">
+          <h3>Васильківський професійний ліцей</h3>
+          <p>Сьогодні це сучасний заклад професійної (професійно-технічної) освіти, який здійснює підготовку кваліфікованих робітників за найбільш затребуваними на ринку праці інтегрованими професіями</p>
+        </div>
+      </div><!-- END COL -->
+    </div>
+  </div>
+</section>
+{% endblock %}
+{% block futer %}
+{% for last2 in last_2_articles %}
+{% include 'main/includes/base_foter_template.html' %}
+{% endfor %}
+{% endblock %}

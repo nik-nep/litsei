@@ -1,26 +1,18 @@
 {% extends 'main/base_main.html' %}
 {% load static %}
-
 {% block title %}{{ training_center.title }} Васильківського професійного ліцею{% endblock %}
-
 {% block content %}
-
-    <section class="hero-wrap hero-wrap-2" style="background-image: url({% static 'main/images/bg_1.jpg' %});">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row no-gutters slider-text align-items-center justify-content-center">
-          <div class="col-md-9 ftco-animate text-center">
-            <h1 class="mb-2 bread">{{ training_center.title }}</h1>
-            <p class="breadcrumbs"><span class="mr-2"><a href="/">Головна <i class="ion-ios-arrow-forward"></i></a></span> <span>{{ training_center.title }}<i class="ion-ios-arrow-forward"></i></span></p>
-          </div>
-        </div>
+<section class="hero-wrap hero-wrap-2" style="background-image: url({% static 'main/images/bg_1.jpg' %});">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row no-gutters slider-text align-items-center justify-content-center">
+      <div class="col-md-9 ftco-animate text-center">
+        <h1 class="mb-2 bread">{{ training_center.title }}</h1>
+        <p class="breadcrumbs"><span class="mr-2"><a href="/">Головна <i class="ion-ios-arrow-forward"></i></a></span> <span>{{ training_center.title }}<i class="ion-ios-arrow-forward"></i></span></p>
       </div>
-    </section>
-
-
-
-
-
+    </div>
+  </div>
+</section>
 <section class="ftco-section">
   <div class="container">
     <div class="row justify-content-center mb-5 pb-2"">
@@ -33,15 +25,11 @@
       </div>
       {% endfor %}
     </div>
-
   </div>
 </section>
-
-
-  {% endblock %}
-
-  {% block futer %}
-  {% for last2 in last_2_articles %}
-      {% include 'main/includes/base_foter_template.html' %}
-  {% endfor %}
-  {% endblock %}
+{% endblock %}
+{% block futer %}
+{% for last2 in last_2_articles %}
+{% include 'main/includes/base_foter_template.html' %}
+{% endfor %}
+{% endblock %}

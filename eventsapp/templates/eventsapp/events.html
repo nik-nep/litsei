@@ -1,94 +1,64 @@
 {% extends 'eventsapp/base.html' %}
 {% load static %}
-
-
 {% block title %}Графік проведення Днів відкритих дверей{% endblock %}
-
 {% block description %}
-    <meta name="description" content="КНЗ КОР Васильківський професійний ліцей запрошує усіх бажаючих на Дні відкритих дверей">
+<meta name="description" content="КНЗ КОР Васильківський професійний ліцей запрошує усіх бажаючих на Дні відкритих дверей">
 {% endblock %}
-
 {% block content %}
-
-    <section class="hero-wrap hero-wrap-2" style="background-image: url({% static 'main/images/bg_1.jpg' %});">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row no-gutters slider-text align-items-center justify-content-center">
-          <div class="col-md-9 ftco-animate text-center">
-            <h1 class="mb-2 bread">Графік проведення Днів відкритих дверей</h1>
-            <p class="breadcrumbs"><span class="mr-2"><a href="/">Головна <i class="ion-ios-arrow-forward"></i></a></span> <span>Графік<i class="ion-ios-arrow-forward"></i></span></p>
-          </div>
-        </div>
+<section class="hero-wrap hero-wrap-2" style="background-image: url({% static 'main/images/bg_1.jpg' %});">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row no-gutters slider-text align-items-center justify-content-center">
+      <div class="col-md-9 ftco-animate text-center">
+        <h1 class="mb-2 bread">Графік проведення Днів відкритих дверей</h1>
+        <p class="breadcrumbs"><span class="mr-2"><a href="/">Головна <i class="ion-ios-arrow-forward"></i></a></span> <span>Графік<i class="ion-ios-arrow-forward"></i></span></p>
       </div>
-    </section>
-
-
-    <section class="ftco-section">
-			<div class="container">
-				<div class="row">
-
-
-          <div class="col-lg-8 ftco-animate">
-{% for event in events %}
-            <h2 class="mb-3">{{event.name}}</h2>
-            <br>
-            <h2 class="mb-3">{% autoescape off %}{{event.description}}{% endautoescape %}</h2>
-{% endfor %}
-          </div>
-
-
-          <div class="pt-0 mt-3">
-          </div> <!-- .col-md-8 -->
-
-
-          <div class="col-lg-4 sidebar ftco-animate">
-              <!--
-            <div class="sidebar-box">
-              <form action="#" class="search-form">
-                <div class="form-group">
-                  <span class="icon icon-search"></span>
-                  <input type="text" class="form-control" placeholder="шукати...">
-                </div>
-              </form>
-            </div>
-              -->
-            <div class="sidebar-box ftco-animate">
-            	<h3>Рубріки</h3>
-              <ul class="categories">
-{% for rubric in rubrics %}
-                <li><a href="/rubric/{{ rubric.pk }}">{{ rubric.name }} <span>{{ rubric.article__count }}</span></a></li>
-{% endfor %}
-
-              </ul>
-            </div>
-
-            <div class="sidebar-box ftco-animate">
-              <h3>Останні новини</h3>
-{% for last3 in last_3_articles %}
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(/media/{{ last3.image }});"></a>
-                <div class="text">
-                  <h3 class="heading"><a href="{% url 'article_detail' pk=last3.pk %}">{{ last3.title }}</a></h3>
-                  <div class="meta">
-                    <div><a href="#"><span class="icon-calendar"></span> {{ last3.published_date|date:"d.m.Y" }}</a></div>
-                    <div><a href="#"><span class="icon-person"></span> {{ last3.author }}</a></div>
-                    <!--<div><a href="#"><span class="icon-chat"></span> 19</a></div>-->
-                  </div>
-                </div>
-              </div>
-{% endfor %}
-
-            </div>
-
-          </div><!-- END COL -->
+    </div>
+  </div>
+</section>
+<section class="ftco-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 ftco-animate">
+        {% for event in events %}
+        <h2 class="mb-3">{{event.name}}</h2>
+        <br>
+        <h2 class="mb-3">{% autoescape off %}{{event.description}}{% endautoescape %}</h2>
+        {% endfor %}
+      </div>
+      <div class="pt-0 mt-3">
+      </div> <!-- .col-md-8 -->
+      <div class="col-lg-4 sidebar ftco-animate">
+        <div class="sidebar-box ftco-animate">
+          <h3>Рубріки</h3>
+          <ul class="categories">
+            {% for rubric in rubrics %}
+            <li><a href="/rubric/{{ rubric.pk }}">{{ rubric.name }} <span>{{ rubric.article__count }}</span></a></li>
+            {% endfor %}
+          </ul>
         </div>
-			</div>
-		</section>
-
-  {% endblock %}
-
-  {% block futer %}
-  {% for last2 in last_2_articles %}
-      {% include 'main/includes/base_foter_template.html' %}
-  {% endfor %}
-  {% endblock %}
+        <div class="sidebar-box ftco-animate">
+          <h3>Останні новини</h3>
+          {% for last3 in last_3_articles %}
+          <div class="block-21 mb-4 d-flex">
+            <a class="blog-img mr-4" style="background-image: url(/media/{{ last3.image }});"></a>
+            <div class="text">
+              <h3 class="heading"><a href="{% url 'article_detail' pk=last3.pk %}">{{ last3.title }}</a></h3>
+              <div class="meta">
+                <div><a href="#"><span class="icon-calendar"></span> {{ last3.published_date|date:"d.m.Y" }}</a></div>
+                <div><a href="#"><span class="icon-person"></span> {{ last3.author }}</a></div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div><!-- END COL -->
+    </div>
+  </div>
+</section>
+{% endblock %}
+{% block futer %}
+{% for last2 in last_2_articles %}
+{% include 'main/includes/base_foter_template.html' %}
+{% endfor %}
+{% endblock %}
