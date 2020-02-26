@@ -19,6 +19,7 @@ urlpatterns = [
     path('public', public),
     path('contact', contact),
     path('navchalna/', navchalna_robota),
+    path('shveynyy-dim-malvy/', shveynyy_dim_malvy),
     path('vykhovna/', vykhovna_robota),
     path('metodychna/', metodychna_robota),
     path('rozklad/', rozklad_urokiv),

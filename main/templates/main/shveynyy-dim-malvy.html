@@ -1,0 +1,199 @@
+{% extends 'main/base_main.html' %}
+{% load static %}
+
+
+{% block title %}Швейний дім «Мальви» КНЗ КОР «Васильківський професійний ліцей»{% endblock %}
+
+{% block description %}
+    <meta name="description" content="Підбір одягу чи оригінального подарунку, надзвичайна сукня, майстрині нашого швейного дому знають усі секрети візуальних переваг та допоможуть Вам у реалізації Ваших ідей">
+{% endblock %}
+
+{% block content %}
+
+    <section class="hero-wrap hero-wrap-2" style="background-image: url({% static 'main/images/bg_1.jpg' %});">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+            <h1 class="mb-2 bread">Швейний дім «Мальви»</h1>
+            <p class="breadcrumbs"><span class="mr-2"><a href="/">Головна <i class="ion-ios-arrow-forward"></i></a></span> <span>Швейний дім «Мальви» <i class="ion-ios-arrow-forward"></i></span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ftco-section">
+			<div class="container">
+				<div class="row">
+          <div class="col-lg-8 ftco-animate">
+            <h2 class="mb-3">Вас вітає Швейний дім «Мальви»</h2>
+
+            <p>Часто ми не знаємо, на що опиратися при підборі одягу чи оригінального подарунку, який радуватиме близьку людину не один рік. А, можливо, Ви вже давно мрієте про надзвичайну сукню, але ще не змогли втілити свою фантазію у життя? Майстрині нашого швейного дому знають усі секрети візуальних переваг та допоможуть Вам у реалізації Ваших ідей!</p>
+<p>
+
+  </p>
+            <div class="pt-0 mt-3">
+
+            </div>
+          </div> <!-- .col-md-8 -->
+
+          <div class="col-lg-4 sidebar ftco-animate">
+
+
+            <div class="sidebar-box ftco-animate">
+            	<h3>Рубрики</h3>
+              <ul class="categories">
+{% for rubric in rubrics %}
+                <li><a href="/rubric/{{ rubric.pk }}">{{ rubric.name }} <span>{{ rubric.article__count }}</span></a></li>
+{% endfor %}
+              </ul>
+            </div>
+
+
+
+          </div><!-- END COL -->
+        </div>
+			</div>
+		</section>
+
+<section class="ftco-gallery">
+  <div class="container-wrap">
+    <div class="row no-gutters">
+      <div class="col-md-3 ftco-animate">
+        <a href="{% static 'main/images/malva-1.jpg' %}" class="gallery image-popup img d-flex align-items-center" style="background-image: url({% static 'main/images/malva-1.jpg' %});">
+          <div class="icon mb-4 d-flex align-items-center justify-content-center">
+            <span class="icon-instagram"></span>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-3 ftco-animate">
+        <a href="{% static 'main/images/malva-2.jpg' %}" class="gallery image-popup img d-flex align-items-center" style="background-image: url({% static 'main/images/malva-2.jpg' %});">
+          <div class="icon mb-4 d-flex align-items-center justify-content-center">
+            <span class="icon-instagram"></span>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-3 ftco-animate">
+        <a href="{% static 'main/images/malva-3.jpg' %}" class="gallery image-popup img d-flex align-items-center" style="background-image: url({% static 'main/images/malva-3.jpg' %});">
+          <div class="icon mb-4 d-flex align-items-center justify-content-center">
+            <span class="icon-instagram"></span>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-3 ftco-animate">
+        <a href="{% static 'main/images/malva-4.jpg' %}" class="gallery image-popup img d-flex align-items-center" style="background-image: url({% static 'main/images/malva-4.jpg' %});">
+          <div class="icon mb-4 d-flex align-items-center justify-content-center">
+            <span class="icon-instagram"></span>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-3 ftco-animate">
+        <a href="{% static 'main/images/malva-5.jpg' %}" class="gallery image-popup img d-flex align-items-center" style="background-image: url({% static 'main/images/malva-5.jpg' %});">
+          <div class="icon mb-4 d-flex align-items-center justify-content-center">
+            <span class="icon-instagram"></span>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-3 ftco-animate">
+        <a href="{% static 'main/images/malva-6.jpg' %}" class="gallery image-popup img d-flex align-items-center" style="background-image: url({% static 'main/images/malva-6.jpg' %});">
+          <div class="icon mb-4 d-flex align-items-center justify-content-center">
+            <span class="icon-instagram"></span>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-3 ftco-animate">
+        <a href="{% static 'main/images/malva-7.jpg' %}" class="gallery image-popup img d-flex align-items-center" style="background-image: url({% static 'main/images/malva-7.jpg' %});">
+          <div class="icon mb-4 d-flex align-items-center justify-content-center">
+            <span class="icon-instagram"></span>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-3 ftco-animate">
+        <a href="{% static 'main/images/malva-8.jpg' %}" class="gallery image-popup img d-flex align-items-center" style="background-image: url({% static 'main/images/malva-8.jpg' %});">
+          <div class="icon mb-4 d-flex align-items-center justify-content-center">
+            <span class="icon-instagram"></span>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-3 ftco-animate">
+        <a href="{% static 'main/images/malva-9.jpg' %}" class="gallery image-popup img d-flex align-items-center" style="background-image: url({% static 'main/images/malva-9.jpg' %});">
+          <div class="icon mb-4 d-flex align-items-center justify-content-center">
+            <span class="icon-instagram"></span>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-3 ftco-animate">
+        <a href="{% static 'main/images/malva-10.jpg' %}" class="gallery image-popup img d-flex align-items-center" style="background-image: url({% static 'main/images/malva-10.jpg' %});">
+          <div class="icon mb-4 d-flex align-items-center justify-content-center">
+            <span class="icon-instagram"></span>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-3 ftco-animate">
+        <a href="{% static 'main/images/malva-11.jpg' %}" class="gallery image-popup img d-flex align-items-center" style="background-image: url({% static 'main/images/malva-11.jpg' %});">
+          <div class="icon mb-4 d-flex align-items-center justify-content-center">
+            <span class="icon-instagram"></span>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-3 ftco-animate">
+        <a href="{% static 'main/images/malva-12.jpg' %}" class="gallery image-popup img d-flex align-items-center" style="background-image: url({% static 'main/images/malva-12.jpg' %});">
+          <div class="icon mb-4 d-flex align-items-center justify-content-center">
+            <span class="icon-instagram"></span>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-3 ftco-animate">
+        <a href="{% static 'main/images/malva-13.jpg' %}" class="gallery image-popup img d-flex align-items-center" style="background-image: url({% static 'main/images/malva-13.jpg' %});">
+          <div class="icon mb-4 d-flex align-items-center justify-content-center">
+            <span class="icon-instagram"></span>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-3 ftco-animate">
+        <a href="{% static 'main/images/malva-14.jpg' %}" class="gallery image-popup img d-flex align-items-center" style="background-image: url({% static 'main/images/malva-14.jpg' %});">
+          <div class="icon mb-4 d-flex align-items-center justify-content-center">
+            <span class="icon-instagram"></span>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-3 ftco-animate">
+        <a href="{% static 'main/images/malva-15.jpg' %}" class="gallery image-popup img d-flex align-items-center" style="background-image: url({% static 'main/images/malva-15.jpg' %});">
+          <div class="icon mb-4 d-flex align-items-center justify-content-center">
+            <span class="icon-instagram"></span>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-3 ftco-animate">
+        <a href="{% static 'main/images/malva-16.jpg' %}" class="gallery image-popup img d-flex align-items-center" style="background-image: url({% static 'main/images/malva-16.jpg' %});">
+          <div class="icon mb-4 d-flex align-items-center justify-content-center">
+            <span class="icon-instagram"></span>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-3 ftco-animate">
+        <a href="{% static 'main/images/malva-17.jpg' %}" class="gallery image-popup img d-flex align-items-center" style="background-image: url({% static 'main/images/malva-17.jpg' %});">
+          <div class="icon mb-4 d-flex align-items-center justify-content-center">
+            <span class="icon-instagram"></span>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-3 ftco-animate">
+        <a href="{% static 'main/images/malva-18.jpg' %}" class="gallery image-popup img d-flex align-items-center" style="background-image: url({% static 'main/images/malva-18.jpg' %});">
+          <div class="icon mb-4 d-flex align-items-center justify-content-center">
+            <span class="icon-instagram"></span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  {% endblock %}
+
+  {% block futer %}
+  {% for last2 in last_2_articles %}
+      {% include 'main/includes/base_foter_template.html' %}
+  {% endfor %}
+  {% endblock %}
