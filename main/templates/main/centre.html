@@ -1,6 +1,9 @@
 {% extends 'main/base_main.html' %}
 {% load static %}
 {% block title %}{{ training_center.title }} Васильківського професійного ліцею{% endblock %}
+{% block description %}
+<meta name="description" content="{{ training_center.title }} Комунального навчального закладу Київської обласної ради Васильківський професійний ліцей">
+{% endblock %}
 {% block content %}
 <section class="hero-wrap hero-wrap-2" style="background-image: url({% static 'main/images/bg_1.jpg' %});">
   <div class="overlay"></div>
