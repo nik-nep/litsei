@@ -25,12 +25,3 @@ sitemaps = {
 if settings.DEBUG:
     urlpatterns.append(path('static/<path:path>', never_cache(serve)))
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-
-'''
-
-urlpatterns = [
-    path('add', NewsCreateView.as_view(), name='add'),
-    path('<int:rubric_id>/', by_rubric, name='by_rubric'),
-    path('', index, name='index'),
-'''

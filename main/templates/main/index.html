@@ -196,6 +196,7 @@
       </div>
     </div>
   </section>
+
   <section class="ftco-section ftco-no-pt ftc-no-pb">
     <div class="container">
       <p><a name="oholoshennya"></a></p>
@@ -203,12 +204,17 @@
         <div class="col-md-5 order-md-last wrap-about wrap-about d-flex align-items-stretch">
           <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
-              <div class="carousel-item active" data-interval="3000">
-                <img src="{% static 'main/images/oholoshennya-1.jpg' %}" class="d-block w-100" alt="...">
-              </div>
-              <div class="carousel-item" data-interval="3000">
-                <img src="{% static 'main/images/oholoshennya-2.jpg' %}" class="d-block w-100" alt="...">
-              </div>
+                {% for anno in announce %}
+                  {% if anno.sorting == 1 %}
+                    <div class="carousel-item active" data-interval="3000">
+                      <img src="/media/{{ anno.image }}" class="d-block w-100" alt="{{ anno.title }}">
+                    </div>
+                  {% else %}
+                    <div class="carousel-item" data-interval="3000">
+                      <img src="/media/{{ anno.image }}" class="d-block w-100" alt="{{ anno.title }}">
+                    </div>
+                  {% endif %}
+                {% endfor %}
             </div>
             <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -222,12 +228,16 @@
         </div>
         <div class="col-md-7 wrap-about py-5 pr-md-4 ftco-animate">
           <h2 class="mb-4">Оголошення:</h2>
-          <a href="{% static 'main/images/oholoshennya-1.jpg' %}" target="_blank"><p>Васильківський професійний ліцей запрошує усіх бажаючих на День відкритих дверей 19 березня 2020 року о 12.00 год</p></a>
-          <a href="{% static 'main/images/oholoshennya-2.jpg' %}" target="_blank"><p>20 березня 2020 року о 10.00 год на базі КНЗ КОР "Васильківський професійний ліцей" спільно з Васильківським центром зайнятості відбудеться Ярмарок вакансій.</p></a>
-        </div>
+          <ul>
+          {% for anno in announce %}
+          <li><a href="/media/{{ anno.image }}" target="_blank"><p>{{ anno.description }}</p></a></li>
+          {% endfor %}
+        </ul>
+       </div>
       </div>
     </div>
   </section>
+
   <section class="ftco-section ftco-no-pt ftc-no-pb" id="section-counter" style="background-image: url({% static 'main/images/malva-bg.JPG' %});" data-stellar-background-ratio="0">
     <div class="container">
       <div class="row d-flex">
@@ -259,87 +269,19 @@
       <div class="row ftco-animate justify-content-center">
         <div class="col-md-12">
           <div class="carousel-testimony owl-carousel">
+            {% for partner in partners_logo %}
             <div class="item">
               <div class="testimony-wrap d-flex">
                 <div class="card" style="width: 12rem;">
-                  <a href="https://mon.gov.ua/ua" target="_blank"><img src="{% static 'main/images/logo-mon.png' %}" class="card-img-top" alt="..."></a>
+                  <a href="{{ partner.website }}" target="_blank"><img src="media/{{partner.logo }}" class="card-img-top" alt="{{ partner.title }}"></a>
                 </div>
                 <div class="text ml-2">
                   <p></p>
-                  <p class="name"><a href="https://mon.gov.ua/ua">Міністерство освіти і науки України.</a></p>
+                  <p class="name"><a href="{{ partner.website }}"><h6>{{ partner.title }}</h6></a></p>
                 </div>
               </div>
             </div>
-            <div class="item">
-              <div class="testimony-wrap d-flex">
-                <div class="card" style="width: 12rem;">
-                  <a href="http://kyiv-obl.gov.ua/" target="_blank"><img src="{% static 'main/images/logo-kyiv-obl.JPG' %}" class="card-img-top" alt="..."></a>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="testimony-wrap d-flex">
-                <div class="card" style="width: 12rem;">
-                  <a href="https://www.kyiv-oblosvita.gov.ua/" target="_blank"><img src="{% static 'main/images/logo-kyiv-oblosvita.png' %}" class="card-img-top" alt="..."></a>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="testimony-wrap d-flex">
-                <div class="card" style="width: 12rem;">
-                  <a href="https://www.kristti.com.ua/" target="_blank"><img src="{% static 'main/images/logo-kristti.jpg' %}" class="card-img-top" alt="..."></a>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="testimony-wrap d-flex">
-                <div class="card" style="width: 12rem;">
-                  <a href="http://oblpto.in.ua/" target="_blank"><img src="{% static 'main/images/logo-oblpto.jpg' %}" class="card-img-top" alt="..."></a>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="testimony-wrap d-flex">
-                <div class="card" style="width: 12rem;">
-                  <a href="https://pedpresa.ua/" target="_blank"><img src="{% static 'main/images/logo-pedpresa.png' %}" class="card-img-top" alt="..."></a>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="testimony-wrap d-flex">
-                <div class="card" style="width: 12rem;">
-                  <a href="https://ivet.edu.ua/" target="_blank"><img src="{% static 'main/images/logo-ivet.png' %}" class="card-img-top" alt="..."></a>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="testimony-wrap d-flex">
-                <div class="card" style="width: 12rem;">
-                  <a href="http://testportal.gov.ua/" target="_blank"><img src="{% static 'main/images/logo-testportal.png' %}" class="card-img-top" alt="..."></a>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="testimony-wrap d-flex">
-                <div class="card" style="width: 12rem;">
-                  <a href="https://kyivtest.org.ua/" target="_blank"><img src="{% static 'main/images/logo-kyivtest.png' %}" class="card-img-top" alt="..."></a>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="testimony-wrap d-flex">
-                <div class="card" style="width: 12rem;">
-                  <a href="https://www.kyiv-oblosvita.gov.ua/index.php?option=com_content&view=category&id=102" target="_blank"><img src="{% static 'main/images/logo-patriot.jpg' %}" class="card-img-top" alt="..."></a>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="testimony-wrap d-flex">
-                <div class="card" style="width: 12rem;">
-                  <a href="https://www.kyiv-oblosvita.gov.ua/index.php?option=com_content&view=category&layout=blog&id=33&Itemid=173" target="_blank"><img src="{% static 'main/images/logo-dovidnyk.jpg' %}" class="card-img-top" alt="..."></a>
-                </div>
-              </div>
-            </div>
+            {% endfor %}
           </div>
         </div>
       </div>

@@ -5,3 +5,4 @@ from .models import *
 
 admin.site.register(EventsType)
 admin.site.register(Events)
+admin.site.register(Schedule)

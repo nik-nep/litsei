@@ -43,3 +43,21 @@ class Events(models.Model):
         verbose_name_plural = "Заходи"
         verbose_name = "Захід"
         ordering = ["s_number"]
+
+
+class Schedule(models.Model):
+    title = models.CharField(max_length=250, verbose_name="Назва")
+    description = models.TextField(blank=True, verbose_name='Опис')
+    download_file = models.FileField(blank=True, upload_to=get_timestamp_path_rozklad_file,
+                                    verbose_name="Додати файл розкладу")
+    is_active = models.BooleanField(default=True, verbose_name='Опубліковано')
+    sorting = models.PositiveIntegerField(blank=True, verbose_name='Сортування')
+
+
+    def __str__(self):
+            return self.title
+
+    class Meta:
+        verbose_name_plural = "Розклади уроків"
+        verbose_name = "Розклад уроків"
+        ordering = ["sorting"]

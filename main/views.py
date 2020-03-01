@@ -4,6 +4,11 @@ from django.http import HttpResponse
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models import Count
 from .models import *
+from partners.models import PartnersLogo
+from announcement.models import Announcement
+from eventsapp.models import Schedule
+
+
 
 from photologue.models import Photo, Gallery
 
@@ -53,6 +58,7 @@ def metodychna_robota(request):
 def rozklad_urokiv(request):
     last_3_articles = Article.objects.filter(is_active=True)[0:3]
     last_2_articles = Article.objects.filter(is_active=True)[:2]
+    rozlkady_urokiv = Schedule.objects.filter(is_active=True)
     rubrics = Rubric.objects.annotate(Count('article'))
     tags = Tag.objects.all()
     totall_art = Article.objects.filter(is_active=True).count()
@@ -60,6 +66,7 @@ def rozklad_urokiv(request):
         'totall_art': totall_art, 'tags': tags,
         'last_3_articles': last_3_articles,
         'last_2_articles': last_2_articles,
+        'rozlkady_urokiv': rozlkady_urokiv,
         }
     return render(request, 'main/rozklad.html', context)
 
@@ -93,10 +100,12 @@ def home(request):
     articles = Article.objects.filter(is_active=True)[:3]
     last_2_articles = Article.objects.filter(is_active=True)[:2]
     rubrics = Rubric.objects.annotate(Count('article'))
+    partners_logo = PartnersLogo.objects.filter(is_active=True)
+    announce = Announcement.objects.filter(is_active=True)[:5]
     training_center = TrainingCenter.objects.filter(is_active=True)[:4]
     context = {'articles': articles, 'last_2_articles': last_2_articles,
-                'rubrics': rubrics,
-                'training_center': training_center,
+                'rubrics': rubrics, 'partners_logo': partners_logo,
+                'training_center': training_center, 'announce': announce,
               }
     return render(request, 'main/index.html', context)
 
