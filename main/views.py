@@ -264,7 +264,7 @@ def old_plans_list(request, pk):
               'period': period, 'rubrics': rubrics,
               'old_plans': old_plans,
               }
-    return render(request, 'main/old_plans_list.html', context)
+    return render(request, 'main/old-plans-list.html', context)
 
 def profession(request):
     prof = Professions.objects.all()

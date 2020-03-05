@@ -32,7 +32,7 @@ urlpatterns = [
     path('rubric/<int:pk>', rubric_newss_list, name='rubric_newss_list'),
     path('trainingcenter/<int:pk>', trainingcenter_detal, name='trainingcenter_detal'),
     path('gallery/<int:pk>', gallery, name='gallery'),
-    path('oldplans/<int:pk>', old_plans_list, name='old_plans_list'),
+    path('old-plans/<int:pk>', old_plans_list, name='old_plans_list'),
     path('photologue/', include('photologue.urls', namespace='photologue')),
     path('', home),
 ]
