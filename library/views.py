@@ -38,6 +38,32 @@ def library(request):
             }
     return render(request, 'library/library.html', context)
 
+def dystantsiyne_navchannya(request):
+    last_3_articles = Article.objects.filter(is_active=True)[0:3]
+    last_2_articles = Article.objects.filter(is_active=True)[:2]
+    books = Book.objects.all()
+    letters = FilterLetter.objects.all()
+    paginator = Paginator(books, 6)
+    page = request.GET.get('page')
+    books_paginator = paginator.get_page(page)
+
+    rubrics = Rubric.objects.annotate(Count('article'))
+    category = Category.objects.annotate(Count('book'))
+    section_category = SectionCategory.objects.all()
+    tags = Tag.objects.all()
+    totall_art = Article.objects.filter(is_active=True).count()
+
+    context = {'rubrics': rubrics, 'books': books, 'category': category,
+            'totall_art': totall_art, 'tags': tags,
+            'last_3_articles': last_3_articles,
+            'last_2_articles': last_2_articles,
+            'section_category': section_category,
+            'books_paginator': books_paginator,
+            'letters': letters,
+            }
+    return render(request, 'library/dystantsiyne-navchannya.html', context)
+
+
 
 def category_books(request, pk):
     books = Book.objects.filter(category=pk)

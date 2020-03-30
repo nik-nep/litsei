@@ -15,6 +15,7 @@ urlpatterns = [
     path('category/<int:pk>', category_books, name='category_books'),
     path('rubric/<int:pk>', rubric_books, name='rubric_books'),
     path('filter/<int:pk>', filter_books, name='filter_books'),
+    path('dystantsiyne-navchannya/', dystantsiyne_navchannya),
     path('', library),
 ]
 
