@@ -23,7 +23,7 @@
         {% for prv in pravyla %}
         <h2 class="mb-3">{{ prv.title }}</h2>
         <p>
-          <a href="/media/{{ prv.file }}">  <img src="/media/{{prv.image }}" alt="" class="img-fluid"></a>
+          <a href="/media/{{ prv.file }}" target="_blank"><img src="/media/{{prv.image }}" alt="" class="img-fluid"></a>
         </p>
         <p>{{ prv.text }}</p>
         <p>{% autoescape off%}{{ prv.format_text }}{% endautoescape %}</p>
