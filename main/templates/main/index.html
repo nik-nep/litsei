@@ -97,7 +97,7 @@
 {% for sidebarnavmenu in navmenus %}
       <div class="sidebar-box ftco-animate py-0 my-0">
         {% if sidebarnavmenu.is_url_active == True %}
-         <a href="/{{ sidebarnavmenu.navmenu_url }}">{{ sidebarnavmenu.title }}</a>
+         <a href="{{ sidebarnavmenu.navmenu_url }}">{{ sidebarnavmenu.title }}</a>
         {% elif sidebarnavmenu.is_file_active == True %}
          <a href="{{ sidebarnavmenu.file_menu }}" target="_blank">{{ sidebarnavmenu.title }}</a>
         {% else %}
@@ -106,7 +106,7 @@
         <ul class="py-0 my-0">
           {% for nchilds in sidebarnavmenu.navchild.all %}
             {% if nchilds.is_url_active == True %}
-              <li><a href="/{{ nchilds.navchild_url }}">{{ nchilds.title }}</a></li>
+              <li><a href="{{ nchilds.navchild_url }}">{{ nchilds.title }}</a></li>
             {% elif nchilds.is_file_active  == True %}
               <li><a href="{{ nchilds.file }}" target="_blank">{{ nchilds.title }}</a></li>
             {% else %}
