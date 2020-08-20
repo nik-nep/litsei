@@ -97,7 +97,7 @@ def stypendialne_zabezpechennya(request):
     return render(request, 'main/zabezpechennya.html', context)
 
 def home(request):
-    articles = Article.objects.filter(is_active=True)[:12]
+    articles = Article.objects.filter(is_active=True)[:14]
     last_2_articles = Article.objects.filter(is_active=True)[:2]
     rubrics = Rubric.objects.annotate(Count('article'))
     partners_logo = PartnersLogo.objects.filter(is_active=True)
