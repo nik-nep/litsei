@@ -79,66 +79,131 @@
     </div>
   </div>
 </section>
+
 <section class="ftco-section bg-light">
-  <div class="container">
-    <div class="row justify-content-center mb-5 pb-2">
-      <div class="col-md-8 text-center heading-section ftco-animate">
-        <h2 class="mb-4"><span>Останні</span> новини</h2>
-        <p></p>
+
+<div class="container-fluid px-4">
+  <div class="row">
+    <div class="col-lg-4 sidebar ftco-animate">
+      <div class="sidebar-box ftco-animate">
+        <h3>Рубрики</h3>
+        <ul class="categories">
+          {% for rubric in rubrics %}
+          <li><a href="/rubric/{{ rubric.pk }}">{{ rubric.name }} <span>{{ rubric.article__count }}</span></a></li>
+          {% endfor %}
+        </ul>
       </div>
-    </div>
-    <div class="row">
-      {% for article in articles %}
-      <div class="col-md-6 col-lg-4 ftco-animate">
-        <div class="blog-entry">
-          {% if article.is_image_default == True %}
-          <a href="{% url 'article_detail' pk=article.pk %}" class="block-20 d-flex align-items-end" style="background-image: url({% static 'main/images/news_image.jpg)' %};">
+
+{% for sidebarnavmenu in navmenus %}
+      <div class="sidebar-box ftco-animate py-0 my-0">
+        {% if sidebarnavmenu.is_url_active == True %}
+         <a href="/{{ sidebarnavmenu.navmenu_url }}">{{ sidebarnavmenu.title }}</a>
+        {% elif sidebarnavmenu.is_file_active == True %}
+         <a href="/media/{{ sidebarnavmenu.file_menu }}" target="_blank">{{ sidebarnavmenu.title }}</a>
+        {% else %}
+        <h3 class="py-0 my-0">{{ sidebarnavmenu.title }}</h3>
+        {% endif %}
+        <ul class="py-0 my-0">
+          {% for nchilds in sidebarnavmenu.navchild.all %}
+            {% if nchilds.is_url_active == True %}
+              <li><a href="/{{ nchilds.navchild_url }}">{{ nchilds.title }}</a></li>
+            {% elif nchilds.is_file_active  == True %}
+              <li><a href="/media/{{ nchilds.file }}" target="_blank">{{ nchilds.title }}</a></li>
             {% else %}
-            <a href="{% url 'article_detail' pk=article.pk %}" class="block-20 d-flex align-items-end" style="background-image: url(media/{{ article.image }});">
-              {% endif %}
-              <div class="meta-date text-center p-2">
-                <span class="day">{{ article.published_date|date:"d" }}</span>
-                <span class="mos">{{ article.published_date|date:"m" }}</span>
-                <span class="yr">{{ article.published_date|date:"Y" }}</span>
-              </div>
-            </a>
-            <div class="text bg-white p-4">
-              <h5 class="heading"><a href="{% url 'article_detail' pk=article.pk %}">{{ article.title }}</a></h5>
-              {% if article.is_video_news == True %}
-              <p></p>
-              {% else %}
-              <p>{% autoescape off %}{{article.article_text|truncatewords:10}}{% endautoescape %}</p>
-              {% endif %}
-              <div class="d-flex align-items-center mt-4">
-                <p class="mb-0"><a href="{% url 'article_detail' pk=article.pk %}" class="btn btn-primary">Читати далі  <span class="ion-ios-arrow-round-forward"></span></a></p>
-                <p class="ml-auto mb-0">
-                  <a href="#" class="mr-2">{{ article.author }}</a>
-                </p>
-              </div>
+              <li>{{ nchilds.title }}</li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+      <hr>
+{% endfor %}
+
+      <!--
+      <div class="sidebar-box ftco-animate">
+        <h3>Останні новини</h3>
+        {% for last3 in last_3_articles %}
+        <div class="block-21 mb-4 d-flex">
+          <a class="blog-img mr-4" style="background-image: url(/media/{{ last3.image }});"></a>
+          <div class="text">
+            <h3 class="heading"><a href="{% url 'article_detail' pk=last3.pk %}">{{ last3.title }}</a></h3>
+            <div class="meta">
+              <div><a href="#"><span class="icon-calendar"></span> {{ last3.published_date|date:"d.m.Y" }}</a></div>
+              <div><a href="#"><span class="icon-person"></span> {{ last3.author }}</a></div>
             </div>
           </div>
         </div>
         {% endfor %}
-        <div class="container">
-          <div class="row justify-content-center mb-5 pb-2">
-            <div class="col-md-8 text-center heading-section ftco-animate">
-              <h3 class="mb-4"><a href="/news"><span>всі</span> новини...</a></h3>
+      </div>
+
+
+      <div class="sidebar-box ftco-animate">
+        <h3>Tag Cloud</h3>
+        <ul class="tagcloud m-0 p-0">
+          {% for tag in tags %}
+          <a href="#" class="tag-cloud-link">{{ tag.title }}</a>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="sidebar-box ftco-animate">
+        <h3>Васильківський професійний ліцей</h3>
+        <p>Сьогодні це сучасний заклад професійної (професійно-технічної) освіти, який здійснює підготовку кваліфікованих робітників за найбільш затребуваними на ринку праці інтегрованими професіями</p>
+      </div> -->
+
+
+
+    </div><!-- END COL -->
+
+    <div class="col-lg-8 justify-content-center mb-5 pb-2">
+      <div class="col-md-8 text-center heading-section ftco-animate">
+        <h2 class="mb-4"><span>Останні</span> новини</h2>
+        <p></p>
+      </div>
+      <div class="row">
+        {% for article in articles %}
+        <div class="col-md-8 col-lg-6 ftco-animate">
+          <div class="col-md-12 blog-entry">
+            {% if article.is_image_default == True %}
+            <a href="{% url 'article_detail' pk=article.pk %}" class="block-20 d-flex align-items-end" style="background-image: url({% static 'main/images/news_image.jpg)' %};">
+              {% else %}
+              <a href="{% url 'article_detail' pk=article.pk %}" class="block-20 d-flex align-items-end" style="background-image: url(media/{{ article.image }});">
+                {% endif %}
+                <div class="meta-date text-center p-2">
+                  <span class="day">{{ article.published_date|date:"d" }}</span>
+                  <span class="mos">{{ article.published_date|date:"m" }}</span>
+                  <span class="yr">{{ article.published_date|date:"Y" }}</span>
+                </div>
+              </a>
+              <div class="text bg-white p-4">
+                <h5 class="heading"><a href="{% url 'article_detail' pk=article.pk %}">{{ article.title }}</a></h5>
+                {% if article.is_video_news == True %}
+                <p></p>
+                {% else %}
+                <p>{% autoescape off %}{{article.article_text|truncatewords:10}}{% endautoescape %}</p>
+                {% endif %}
+                <div class="d-flex align-items-center mt-4">
+                  <p class="mb-0"><a href="{% url 'article_detail' pk=article.pk %}" class="btn btn-primary">Читати далі  <span class="ion-ios-arrow-round-forward"></span></a></p>
+                  <p class="ml-auto mb-0">
+                    <a href="#" class="mr-2">{{ article.author }}</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+          <div class="container">
+            <div class="row justify-content-center mb-5 pb-2">
+              <div class="col-md-8 text-center heading-section ftco-animate">
+                <h3 class="mb-4"><a href="/news"><span>всі</span> новини...</a></h3>
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-lg-4 sidebar ftco-animate">
-          <div class="sidebar-box ftco-animate">
-            <h3>Рубрики</h3>
-            <ul class="categories">
-              {% for rubric in rubrics %}
-              <li><a href="/rubric/{{ rubric.pk }}">{{ rubric.name }} <span>{{ rubric.article__count }}</span></a></li>
-              {% endfor %}
-            </ul>
-          </div>
-        </div>
-      </div>
+    </div>
+</div>
     </div>
   </section>
+
   <section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url({% static 'main/images/bg_3.jpg' %});" data-stellar-background-ratio="0.5">
     <div class="container">
       <div class="row justify-content-center mb-5 pb-2 d-flex">

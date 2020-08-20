@@ -362,6 +362,43 @@ class ResourcesCenter(models.Model):
         ordering = ["-created_date"]
 
 
+class Navchild(models.Model):
+    title = models.CharField(blank=True, max_length=250, verbose_name="Найменування пункту меню")
+    position_number = models.PositiveIntegerField(blank=True, verbose_name='Позиція у меню')
+    file = models.FileField(blank=True, upload_to=get_timestamp_path_navmenu, verbose_name='Файл до меню')
+    navchild_url = models.CharField(max_length=255, blank=True, verbose_name="Посилання для меню")
+    is_url_active = models.BooleanField(default=False, verbose_name='Активне посилання')
+    is_file_active = models.BooleanField(default=False, verbose_name='Активне посилання на файл')
+
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name_plural = 'Пункти дочірнього меню'
+        verbose_name = 'Пункт дочірнього меню'
+        ordering = ["position_number"]
+
+class Navmenu(models.Model):
+    title = models.TextField(blank=True, verbose_name='Назва меню')
+    navmenu_url = models.CharField(max_length=255, blank=True, verbose_name="Посилання для меню")
+    is_url_active = models.BooleanField(default=False, verbose_name='Активне посилання')
+    file_menu = models.FileField(blank=True, upload_to=get_timestamp_path_navmenu, verbose_name='Файл до меню')
+    is_file_active = models.BooleanField(default=False, verbose_name='Активне посилання на файл')
+    navchild = models.ManyToManyField('Navchild', blank=True, related_name='navmenu')
+    is_active = models.BooleanField(default=True, verbose_name='Опубліковано')
+    position_number = models.PositiveIntegerField(blank=True, verbose_name='Позиція меню')
+
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name_plural = 'Загальне Меню'
+        verbose_name = 'Загальне Меню'
+        ordering = ["position_number"]
+
+
 # class GroupLitsei(models.Model):
 #     title_group = models.CharField(blank=True, max_length=255, verbose_name='Групи')
 #     plan = models.ManyToManyField('Plans', blank=True, related_name='plans')

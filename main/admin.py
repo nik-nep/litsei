@@ -27,6 +27,9 @@ admin.site.register(PeriodPlans)
 admin.site.register(Professions)
 admin.site.register(TrainingCenter)
 admin.site.register(ResourcesCenter)
+admin.site.register(Navchild)
+admin.site.register(Navmenu)
+
 
 
 

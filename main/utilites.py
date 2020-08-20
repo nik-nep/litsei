@@ -12,3 +12,6 @@ def get_timestamp_path_article_photo(instance, filename):
 
 def get_timestamp_path_article_video(instance, filename):
     return '%s%s%s' % ('articles/video/', datetime.now().timestamp(), splitext(filename)[1])
+
+def get_timestamp_path_navmenu(instance, filename):
+    return '%s%s%s' % ('menu/files/', datetime.now().timestamp(), splitext(filename)[1])

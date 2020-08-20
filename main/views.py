@@ -97,15 +97,18 @@ def stypendialne_zabezpechennya(request):
     return render(request, 'main/zabezpechennya.html', context)
 
 def home(request):
-    articles = Article.objects.filter(is_active=True)[:3]
+    articles = Article.objects.filter(is_active=True)[:6]
     last_2_articles = Article.objects.filter(is_active=True)[:2]
     rubrics = Rubric.objects.annotate(Count('article'))
     partners_logo = PartnersLogo.objects.filter(is_active=True)
     announce = Announcement.objects.filter(is_active=True)[:5]
     training_center = TrainingCenter.objects.filter(is_active=True)[:4]
+    navmenus = Navmenu.objects.all()
+    #navchilds = Navmenu.objects.filter(navchild=pk)
     context = {'articles': articles, 'last_2_articles': last_2_articles,
                 'rubrics': rubrics, 'partners_logo': partners_logo,
                 'training_center': training_center, 'announce': announce,
+                'navmenus': navmenus,
               }
     return render(request, 'main/index.html', context)
 
