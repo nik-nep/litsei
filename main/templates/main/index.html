@@ -99,7 +99,7 @@
         {% if sidebarnavmenu.is_url_active == True %}
          <a href="/{{ sidebarnavmenu.navmenu_url }}">{{ sidebarnavmenu.title }}</a>
         {% elif sidebarnavmenu.is_file_active == True %}
-         <a href="/media/{{ sidebarnavmenu.file_menu }}" target="_blank">{{ sidebarnavmenu.title }}</a>
+         <a href="{{ sidebarnavmenu.file_menu }}" target="_blank">{{ sidebarnavmenu.title }}</a>
         {% else %}
         <h3 class="py-0 my-0">{{ sidebarnavmenu.title }}</h3>
         {% endif %}
@@ -108,7 +108,7 @@
             {% if nchilds.is_url_active == True %}
               <li><a href="/{{ nchilds.navchild_url }}">{{ nchilds.title }}</a></li>
             {% elif nchilds.is_file_active  == True %}
-              <li><a href="/media/{{ nchilds.file }}" target="_blank">{{ nchilds.title }}</a></li>
+              <li><a href="{{ nchilds.file }}" target="_blank">{{ nchilds.title }}</a></li>
             {% else %}
               <li>{{ nchilds.title }}</li>
             {% endif %}
