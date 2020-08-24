@@ -30,6 +30,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('events/', include('eventsapp.urls')),
     path('library/', include('library.urls')),
+    path('menu/<int:pk>', include('sitecontent.urls')),
+    path('menu/ch/<int:pk>', include('sitecontent.urls')),
     path('', include('main.urls')),
 
 ]

@@ -6,6 +6,7 @@ from django.utils import timezone
 from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 from photologue.models import Gallery
+from sitecontent.models import *
 
 
 # Create your models here.
@@ -369,7 +370,7 @@ class Navchild(models.Model):
     navchild_url = models.CharField(max_length=255, blank=True, verbose_name="Посилання для меню")
     is_url_active = models.BooleanField(default=False, verbose_name='Активне посилання')
     is_file_active = models.BooleanField(default=False, verbose_name='Активне посилання на файл')
-
+    child_content = models.OneToOneField('sitecontent.Content', blank=True, null=True, on_delete=models.PROTECT, verbose_name='Наповнення рубріки')
 
     def __str__(self):
         return self.title
@@ -377,10 +378,11 @@ class Navchild(models.Model):
     class Meta:
         verbose_name_plural = 'Пункти дочірнього меню'
         verbose_name = 'Пункт дочірнього меню'
-        ordering = ["position_number"]
+        ordering = ["title"]
 
 class Navmenu(models.Model):
     title = models.TextField(blank=True, verbose_name='Назва меню')
+    menu_content = models.OneToOneField('sitecontent.Content', blank=True, null=True, on_delete=models.PROTECT, verbose_name='Наповнення')
     navmenu_url = models.CharField(max_length=255, blank=True, verbose_name="Посилання для меню")
     is_url_active = models.BooleanField(default=False, verbose_name='Активне посилання')
     file_menu = models.FileField(blank=True, upload_to=get_timestamp_path_navmenu, verbose_name='Файл до меню')
