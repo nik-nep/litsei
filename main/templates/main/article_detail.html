@@ -65,12 +65,13 @@
                 <h3 class="heading"><a href="{% url 'article_detail' pk=last3.pk %}">{{ last3.title }}</a></h3>
                 <div class="meta">
                   <div><a href="#"><span class="icon-calendar"></span> {{ last3.published_date|date:"d.m.Y" }}</a></div>
-                  <div><a href="#"><span class="icon-person"></span> {{ last3.author }}</a></div>
+                <!--  <div><a href="#"><span class="icon-person"></span> {{ last3.author }}</a></div> -->
                 </div>
               </div>
             </div>
             {% endfor %}
           </div>
+          <!--
           <div class="sidebar-box ftco-animate">
             <h3>Tag Cloud</h3>
             <ul class="tagcloud m-0 p-0">
@@ -79,6 +80,7 @@
               {% endfor %}
             </ul>
           </div>
+          -->
           <div class="sidebar-box ftco-animate">
             <h3>Васильківський професійний ліцей</h3>
             <p>Сьогодні це сучасний заклад професійної (професійно-технічної) освіти, який здійснює підготовку кваліфікованих робітників за найбільш затребуваними на ринку праці інтегрованими професіями</p>
