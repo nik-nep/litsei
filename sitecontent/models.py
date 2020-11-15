@@ -39,5 +39,5 @@ class Content(models.Model):
         return self.title
 
     class Meta:
-        verbose_name_plural = 'Статті'
-        verbose_name = 'Стаття'
+        verbose_name_plural = 'Наповнення для пунктів меню'
+        verbose_name = 'Наповнення для пункту меню'

@@ -57,35 +57,43 @@
       <p>
         {{ cont.title }}
       </p>
-      <p>
-          <img src="/media/{{ cont.image }}" alt="" class="img-fluid">
-      </p>
-      <p>
-        <p>{% autoescape off %}{{ cont.content_text }}{% endautoescape %}</p>
-      </p>
+      <p><img src="/media/{{ cont.image }}" alt="" class="img-fluid"></p>
+      <p><p>{% autoescape off %}{{ cont.content_text }}{% endautoescape %}</p></p>
     </div>
-
     <div>
       <p>
         {{ cont.video }}
       </p>
-      <p>
-        <a href="/media/{{ cont.file_1 }}" class="badge badge-warning" target="_blank">{{ cont.title_file_1 }}</a>
+      <p><a href="/media/{{ cont.file_1 }}" class="badge badge-warning" target="_blank">{{ cont.title_file_1 }}</a>
       </p>
-      <p>
-        <a href="/media/{{ cont.file_2 }}" class="badge badge-warning" target="_blank">{{ cont.title_file_2 }}</a>
+      <p><a href="/media/{{ cont.file_2 }}" class="badge badge-warning" target="_blank">{{ cont.title_file_2 }}</a>
       </p>
-      <p>
-        <a href="/media/{{ cont.file_3 }}" class="badge badge-warning" target="_blank">{{ cont.title_file_3 }}</a>
+      <p><a href="/media/{{ cont.file_3 }}" class="badge badge-warning" target="_blank">{{ cont.title_file_3 }}</a>
       </p>
-      <p>
-        <a href="/media/{{ cont.file_4 }}" class="badge badge-warning" target="_blank">{{ cont.title_file_4 }}</a>
+      <p><a href="/media/{{ cont.file_4 }}" class="badge badge-warning" target="_blank">{{ cont.title_file_4 }}</a>
       </p>
-      <p>
-        <a href="/media/{{ cont.file_5 }}" class="badge badge-warning" target="_blank">{{ cont.title_file_5 }}</a>
+      <p><a href="/media/{{ cont.file_5 }}" class="badge badge-warning" target="_blank">{{ cont.title_file_5 }}</a>
       </p>
       {% endfor %}
     </div>
+
+    <div class="col-lg-12 ftco-animate">
+      {% for gallery in queryset %}
+      <div class="row no-gutters">
+        {% for photo in gallery.public %}
+        <div class="col-md-4 ftco-animate">
+          <a href="/media/{{ photo.image }}" class="gallery image-popup img d-flex align-items-center" style="background-image: url({{ photo.get_thumbnail_url }});">
+            <div class="icon mb-4 d-flex align-items-center justify-content-center">
+              <span class="icon-instagram"></span>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+      {% endfor %}
+    </div>
+
+
   </div> <!-- .col-md-8 -->
 
   <div class="col-lg-3 sidebar ftco-animate">
@@ -97,7 +105,6 @@
         {% endfor %}
       </ul>
     </div>
-
   </section>
 
               {% endblock %}

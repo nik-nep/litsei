@@ -15,16 +15,21 @@ from django.views.generic.list import ListView
 
 def sitecontent(request, pk):
     content = Content.objects.filter(id=pk, is_active=True)
+    #content = get_object_or_404(Content, id=pk)
     last_3_articles = Article.objects.filter(is_active=True)[0:3]
     last_2_articles = Article.objects.filter(is_active=True)[:2]
     rubrics = Rubric.objects.annotate(Count('article'))
     tags = Tag.objects.all()
     totall_art = Article.objects.filter().count()
     navmenus = Navmenu.objects.all()
+    try:
+        queryset = Gallery.objects.on_site().is_public().filter(pk=pk)
+    except:
+        queryset = []
     context = {'rubrics': rubrics,
         'totall_art': totall_art, 'tags': tags,
         'last_3_articles': last_3_articles,
         'last_2_articles': last_2_articles, 'content': content,
-        'navmenus': navmenus,
+        'navmenus': navmenus, 'queryset': queryset,
         }
     return render(request, 'sitecontent/content.html', context)

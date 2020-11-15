@@ -7,11 +7,7 @@ from .models import *
 from partners.models import PartnersLogo
 from announcement.models import Announcement
 from eventsapp.models import Schedule
-
-
-
 from photologue.models import Photo, Gallery
-
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 # from photologue.models import *

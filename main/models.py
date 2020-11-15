@@ -65,8 +65,8 @@ class Article(models.Model):
         return self.title
 
     class Meta:
-        verbose_name_plural = 'Статті'
-        verbose_name = 'Стаття'
+        verbose_name_plural = 'Новини'
+        verbose_name = 'Новина'
         ordering = ["-published_date"]
 
 
