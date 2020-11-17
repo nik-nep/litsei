@@ -14,8 +14,7 @@ from django.views.generic.list import ListView
 
 
 def sitecontent(request, pk):
-    content = Content.objects.filter(id=pk, is_active=True)
-    #content = get_object_or_404(Content, id=pk)
+    content = get_object_or_404(Content, pk=pk)
     last_3_articles = Article.objects.filter(is_active=True)[0:3]
     last_2_articles = Article.objects.filter(is_active=True)[:2]
     rubrics = Rubric.objects.annotate(Count('article'))
@@ -23,7 +22,7 @@ def sitecontent(request, pk):
     totall_art = Article.objects.filter().count()
     navmenus = Navmenu.objects.all()
     try:
-        queryset = Gallery.objects.on_site().is_public().filter(pk=pk)
+        queryset = Gallery.objects.on_site().is_public().filter(pk=content.gallery.pk)
     except:
         queryset = []
     context = {'rubrics': rubrics,
