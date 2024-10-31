@@ -52,10 +52,12 @@ class Article(models.Model):
         for ai in self.additionalimage_set.all():
             ai.delete()
         super().delete(*args, **kwargs)
-    def delete(self, *args, **kwargs):
-        for ai in self.additionatolimage_set.all():
-            ai.delete()
-        super().delete(*args, **kwargs)
+    
+    
+#    def delete(self, *args, **kwargs):
+#        for ai in self.additionatolimage_set.all():
+#            ai.delete()
+#        super().delete(*args, **kwargs)
 
     def publish(self):
         self.published_date = timezone.now()

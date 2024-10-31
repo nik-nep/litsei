@@ -7,3 +7,15 @@ settings.py
 /static
 /media
 .DS_Store
+Thumbs.db
+django_debug.log
+mydatabase
+**/migrations/
+
+# Ігнорування специфічних файлів та папок
+main/static/debug.log
+main/static/django_debug.log
+passengar.log
+passenger_wsgi.py
+tmp/
+main/migrations/
