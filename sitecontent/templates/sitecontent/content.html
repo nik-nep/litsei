@@ -23,7 +23,7 @@
       <div class="col-lg-3 sidebar ftco-animate">
     {% for sidebarnavmenu in navmenus %}
     <div class="sidebar-box ftco-animate py-0 my-0">
-      {% if sidebarnavmenu.menu_content.pk > 0 %}
+      {% if sidebarnavmenu.menu_content and sidebarnavmenu.menu_content.pk > 0 %}
       <a href="/menu/{{ sidebarnavmenu.menu_content.pk }}">{{ sidebarnavmenu.title }}</a>
 
       {% elif sidebarnavmenu.is_url_active == True %}
@@ -35,7 +35,7 @@
       {% endif %}
       <ul class="py-0 my-0">
         {% for nchilds in sidebarnavmenu.navchild.all %}
-        {% if nchilds.child_content.pk > 0 %}
+        {% if nchilds.child_content and nchilds.child_content.pk > 0 %}
         <li><a href="/menu/ch/{{ nchilds.child_content.pk }}">{{ nchilds.title }}</a></li>
         {% elif nchilds.is_url_active == True %}
         <li><a href="{{ nchilds.navchild_url }}">{{ nchilds.title }}</a></li>
