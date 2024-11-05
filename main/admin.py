@@ -31,7 +31,5 @@ admin.site.register(Navchild)
 admin.site.register(Navmenu)
 
 
-
-
 # admin.site.register(GroupLitsei)
 # admin.site.register(Plans)
